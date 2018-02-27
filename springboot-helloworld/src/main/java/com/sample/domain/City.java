@@ -1,12 +1,17 @@
 package com.sample.domain;
 
+import lombok.Builder;
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
  * 城市实体类
- *
+ * <p>
  * Created by bysocket on 07/02/2017.
  */
+@Data
+@Builder
 public class City implements Serializable {
 
     private static final long serialVersionUID = -1L;

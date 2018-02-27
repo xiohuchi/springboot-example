@@ -49,7 +49,7 @@ public class CityServiceImpl implements CityService {
         }
 
         // 从 DB 中获取城市信息
-        City city = cityDao.findById(id);
+        City city = cityDao.selectById(id);
 
         // 插入缓存
         operations.set(key, city, 10, TimeUnit.SECONDS);
@@ -59,8 +59,8 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public Long saveCity(City city) {
-        return cityDao.saveCity(city);
+    public void saveCity(City city) {
+        cityDao.insert(city);
     }
 
     /**
@@ -69,8 +69,8 @@ public class CityServiceImpl implements CityService {
      * 如果缓存不存在，不操作
      */
     @Override
-    public Long updateCity(City city) {
-        Long ret = cityDao.updateCity(city);
+    public void updateCity(City city) {
+        int ret = cityDao.update(city);
 
         // 缓存存在，删除缓存
         String key = "city_" + city.getId();
@@ -81,13 +81,12 @@ public class CityServiceImpl implements CityService {
             LOGGER.info("CityServiceImpl.updateCity() : 从缓存中删除城市 >> " + city.toString());
         }
 
-        return ret;
     }
 
     @Override
-    public Long deleteCity(Long id) {
+    public void deleteCity(Long id) {
 
-        Long ret = cityDao.deleteCity(id);
+        int ret = cityDao.deleteById(id);
 
         // 缓存存在，删除缓存
         String key = "city_" + id;
@@ -97,7 +96,6 @@ public class CityServiceImpl implements CityService {
 
             LOGGER.info("CityServiceImpl.deleteCity() : 从缓存中删除城市 ID >> " + id);
         }
-        return ret;
     }
 
 }

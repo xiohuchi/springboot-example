@@ -1,35 +1,22 @@
 package com.sample.dao;
 
-import com.sample.domain.City;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-/**
- * 城市 DAO 接口类
- * <p>
- * Created by bysocket on 07/02/2017.
- */
+import com.sample.domain.City;
+
 public interface CityDao {
 
-    /**
-     * 获取城市信息列表
-     *
-     * @return
-     */
-    List<City> findAllCity();
+    int insert(@Param("pojo") City pojo);
 
-    /**
-     * 根据城市 ID，获取城市信息
-     *
-     * @param id
-     * @return
-     */
-    City findById(@Param("id") Long id);
+    int insertList(@Param("pojos") List<City> pojo);
 
-    Long saveCity(City city);
+    List<City> select(@Param("pojo") City pojo);
 
-    Long updateCity(City city);
+    int update(@Param("pojo") City pojo);
 
-    Long deleteCity(Long id);
+    City selectById(@Param("pojo") Long pojo);
+
+    int deleteById(@Param("pojo") Long pojo);
 }

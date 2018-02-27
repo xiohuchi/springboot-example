@@ -11,10 +11,8 @@ import javax.annotation.Resource;
  */
 @RestController
 public class CityRestController {
-
     @Resource
     private CityService cityService;
-
 
     @RequestMapping(value = "/api/city/{id}", method = RequestMethod.GET)
     public City findOneCity(@PathVariable("id") Long id) {
