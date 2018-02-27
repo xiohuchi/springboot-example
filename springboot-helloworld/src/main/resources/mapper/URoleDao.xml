@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sample.dao.URoleDao">
+
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.sample.domain.URole">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="type" property="type"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        id,
+        name,
+        type
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert">
+        INSERT INTO u_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null">id,</if>
+            <if test="pojo.name != null">name,</if>
+            <if test="pojo.type != null">type,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null">#{pojo.id},</if>
+            <if test="pojo.name != null">#{pojo.name},</if>
+            <if test="pojo.type != null">#{pojo.type},</if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO u_role(
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.id},
+            #{pojo.name},
+            #{pojo.type}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE u_role
+        <set>
+            <if test="pojo.id != null">id = #{pojo.id},</if>
+            <if test="pojo.name != null">name = #{pojo.name},</if>
+            <if test="pojo.type != null">type = #{pojo.type}</if>
+        </set>
+        WHERE id = #{pojo.id}
+    </update>
+
+    <!--auto generated Code-->
+    <select id="select" resultMap="AllColumnMap">
+        SELECT
+        <include refid="all_column"/>
+        FROM u_role
+        <where>
+            <if test="pojo.id != null">AND id = #{pojo.id}</if>
+            <if test="pojo.name != null">AND name = #{pojo.name}</if>
+            <if test="pojo.type != null">AND type = #{pojo.type}</if>
+        </where>
+    </select>
+
+    <!--auto generated Code-->
+    <delete id="delete">
+        DELETE FROM u_role where id = #{pojo.id}
+    </delete>
+
+    <select id="selectRoleByUid" resultMap="AllColumnMap">
+        SELECT
+	      role.id,
+	      role.NAME
+        FROM
+	      u_user_role urole
+	    LEFT JOIN u_role role ON urole.rid = role.id
+        WHERE
+	      urole.uid = 1 #{0}
+    </select>
+</mapper>

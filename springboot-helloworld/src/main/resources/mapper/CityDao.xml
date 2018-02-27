@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sample.dao.CityDao">
+
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.sample.domain.City">
+        <result column="id" property="id"/>
+        <result column="province_id" property="provinceId"/>
+        <result column="city_name" property="cityName"/>
+        <result column="description" property="description"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        id,
+        province_id,
+        city_name,
+        description
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert">
+        INSERT INTO city
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null">id,</if>
+            <if test="pojo.provinceId != null">province_id,</if>
+            <if test="pojo.cityName != null">city_name,</if>
+            <if test="pojo.description != null">description,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null">#{pojo.id},</if>
+            <if test="pojo.provinceId != null">#{pojo.provinceId},</if>
+            <if test="pojo.cityName != null">#{pojo.cityName},</if>
+            <if test="pojo.description != null">#{pojo.description},</if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO city(
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.id},
+            #{pojo.provinceId},
+            #{pojo.cityName},
+            #{pojo.description}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE city
+        <set>
+            <if test="pojo.id != null">id = #{pojo.id},</if>
+            <if test="pojo.provinceId != null">province_id = #{pojo.provinceId},</if>
+            <if test="pojo.cityName != null">city_name = #{pojo.cityName},</if>
+            <if test="pojo.description != null">description = #{pojo.description}</if>
+        </set>
+        WHERE id = #{pojo.id}
+    </update>
+
+    <!--auto generated Code-->
+    <select id="select" resultMap="AllColumnMap">
+        SELECT
+        <include refid="all_column"/>
+        FROM city
+        <where>
+            <if test="pojo.id != null">AND id = #{pojo.id}</if>
+            <if test="pojo.provinceId != null">AND province_id = #{pojo.provinceId}</if>
+            <if test="pojo.cityName != null">AND city_name = #{pojo.cityName}</if>
+            <if test="pojo.description != null">AND description = #{pojo.description}</if>
+        </where>
+    </select>
+
+    <!--auto generated Code-->
+    <delete id="deleteById">
+        DELETE FROM city where id = #{pojo}
+    </delete>
+
+    <select id="selectById" resultMap="AllColumnMap">
+        SELECT
+        <include refid="all_column"/>
+        FROM city
+        where
+        id = #{pojo}
+    </select>
+</mapper>

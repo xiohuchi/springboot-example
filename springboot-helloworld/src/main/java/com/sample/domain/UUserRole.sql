@@ -1,0 +1,8 @@
+-- auto Generated on 2018-02-27 17:56:59 
+-- DROP TABLE IF EXISTS `u_user_role`; 
+CREATE TABLE u_user_role(
+    `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id',
+    `uid` BIGINT NOT NULL DEFAULT -1 COMMENT 'ÓÃ»§ID',
+    `rid` BIGINT NOT NULL DEFAULT -1 COMMENT '½ÇÉ«ID',
+    PRIMARY KEY (`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT 'u_user_role';
