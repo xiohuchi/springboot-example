@@ -1,12 +1,10 @@
 package com.sample.dao;
 
-import org.apache.ibatis.annotations.Mapper;
+import com.sample.domain.UUser;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import com.sample.domain.UUser;
-import org.springframework.stereotype.Service;
 
 @Service
 public interface UUserDao {

@@ -6,10 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="socialSecurity" />
+        <module name="spring-boot-shiro" />
         <module name="springboot-helloworld" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="socialSecurity" target="1.8" />
+      <module name="spring-boot-mp-shiro" target="1.5" />
+      <module name="spring-boot-shiro" target="1.8.0_152-release" />
       <module name="springboot-helloworld" target="1.8" />
     </bytecodeTargetLevel>
   </component>

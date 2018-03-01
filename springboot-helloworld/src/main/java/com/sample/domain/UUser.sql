@@ -7,6 +7,6 @@ CREATE TABLE u_user(
     `pswd` VARCHAR(50) NOT NULL DEFAULT '' COMMENT '密码',
     `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'createTime',
     `last_login_time` DATETIME NOT NULL DEFAULT '1000-01-01 00:00:00' COMMENT '最后登录时间',
-    `status` BIGINT NOT NULL DEFAULT -1 COMMENT '1:有效，0:禁止登录',
+    `enable` INTEGER(12) NOT NULL DEFAULT -1 COMMENT '0:有效，1:禁止登录',
     PRIMARY KEY (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT 'u_user';

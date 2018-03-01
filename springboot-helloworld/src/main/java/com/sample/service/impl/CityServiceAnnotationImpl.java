@@ -2,6 +2,7 @@ package com.sample.service.impl;
 
 import com.sample.dao.CityDao;
 import com.sample.domain.City;
+import com.sample.service.CityAnnotationService;
 import com.sample.service.CityService;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 @Service
-public class CityServiceAnnotationImpl implements CityService {
+public class CityServiceAnnotationImpl implements CityAnnotationService {
 
     @Resource
     private CityDao cityDao;

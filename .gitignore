@@ -58,3 +58,6 @@ springboot-helloworld/target/generated-sources/
 springboot-helloworld/target/generated-test-sources/
 springboot-helloworld/target/test-classes/
 /.idea/
+springboot-helloworld/target/classes/application-dev.properties
+springboot-helloworld/target/classes/logback.xml
+springboot-helloworld/target/classes/mapper/

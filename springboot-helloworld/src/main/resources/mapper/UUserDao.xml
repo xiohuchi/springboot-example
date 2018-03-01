@@ -10,7 +10,7 @@
         <result column="pswd" property="pswd"/>
         <result column="create_time" property="createTime"/>
         <result column="last_login_time" property="lastLoginTime"/>
-        <result column="status" property="status"/>
+        <result column="enable" property="enable"/>
     </resultMap>
 
     <!--auto generated Code-->
@@ -21,30 +21,30 @@
         pswd,
         create_time,
         last_login_time,
-        status
+        enable
     </sql>
 
     <!--auto generated Code-->
     <insert id="insert">
         INSERT INTO u_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="pojo.id != null">id,</if>
-            <if test="pojo.nickname != null">nickname,</if>
-            <if test="pojo.account != null">account,</if>
-            <if test="pojo.pswd != null">pswd,</if>
-            <if test="pojo.createTime != null">create_time,</if>
-            <if test="pojo.lastLoginTime != null">last_login_time,</if>
-            <if test="pojo.status != null">status,</if>
+            <if test="pojo.id != null"> id, </if>
+            <if test="pojo.nickname != null"> nickname, </if>
+            <if test="pojo.account != null"> account, </if>
+            <if test="pojo.pswd != null"> pswd, </if>
+            <if test="pojo.createTime != null"> create_time, </if>
+            <if test="pojo.lastLoginTime != null"> last_login_time, </if>
+            <if test="pojo.enable != null"> enable, </if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="pojo.id != null">#{pojo.id},</if>
-            <if test="pojo.nickname != null">#{pojo.nickname},</if>
-            <if test="pojo.account != null">#{pojo.account},</if>
-            <if test="pojo.pswd != null">#{pojo.pswd},</if>
-            <if test="pojo.createTime != null">#{pojo.createTime},</if>
-            <if test="pojo.lastLoginTime != null">#{pojo.lastLoginTime},</if>
-            <if test="pojo.status != null">#{pojo.status},</if>
+            <if test="pojo.id != null"> #{pojo.id}, </if>
+            <if test="pojo.nickname != null"> #{pojo.nickname}, </if>
+            <if test="pojo.account != null"> #{pojo.account}, </if>
+            <if test="pojo.pswd != null"> #{pojo.pswd}, </if>
+            <if test="pojo.createTime != null"> #{pojo.createTime}, </if>
+            <if test="pojo.lastLoginTime != null"> #{pojo.lastLoginTime}, </if>
+            <if test="pojo.enable != null"> #{pojo.enable}, </if>
         </trim>
     </insert>
 
@@ -61,7 +61,7 @@
             #{pojo.pswd},
             #{pojo.createTime},
             #{pojo.lastLoginTime},
-            #{pojo.status}
+            #{pojo.enable}
             )
         </foreach>
     </insert>
@@ -70,32 +70,31 @@
     <update id="update">
         UPDATE u_user
         <set>
-            <if test="pojo.id != null">id = #{pojo.id},</if>
-            <if test="pojo.nickname != null">nickname = #{pojo.nickname},</if>
-            <if test="pojo.account != null">account = #{pojo.account},</if>
-            <if test="pojo.pswd != null">pswd = #{pojo.pswd},</if>
-            <if test="pojo.createTime != null">create_time = #{pojo.createTime},</if>
-            <if test="pojo.lastLoginTime != null">last_login_time = #{pojo.lastLoginTime},</if>
-            <if test="pojo.status != null">status = #{pojo.status}</if>
+            <if test="pojo.id != null"> id = #{pojo.id}, </if>
+            <if test="pojo.nickname != null"> nickname = #{pojo.nickname}, </if>
+            <if test="pojo.account != null"> account = #{pojo.account}, </if>
+            <if test="pojo.pswd != null"> pswd = #{pojo.pswd}, </if>
+            <if test="pojo.createTime != null"> create_time = #{pojo.createTime}, </if>
+            <if test="pojo.lastLoginTime != null"> last_login_time = #{pojo.lastLoginTime}, </if>
+            <if test="pojo.enable != null"> enable = #{pojo.enable} </if>
         </set>
-        WHERE id = #{pojo.id}
+         WHERE id = #{pojo.id}
     </update>
 
     <!--auto generated Code-->
     <select id="select" resultMap="AllColumnMap">
-        SELECT
-        <include refid="all_column"/>
+        SELECT <include refid="all_column"/>
         FROM u_user
         <where>
-            <if test="pojo.id != null">AND id = #{pojo.id}</if>
-            <if test="pojo.nickname != null">AND nickname = #{pojo.nickname}</if>
-            <if test="pojo.account != null">AND account = #{pojo.account}</if>
-            <if test="pojo.pswd != null">AND pswd = #{pojo.pswd}</if>
-            <if test="pojo.createTime != null">AND create_time = #{pojo.createTime}</if>
-            <if test="pojo.lastLoginTime != null">AND last_login_time = #{pojo.lastLoginTime}</if>
-            <if test="pojo.status != null">AND status = #{pojo.status}</if>
+            <if test="pojo.id != null"> AND id = #{pojo.id} </if>
+            <if test="pojo.nickname != null"> AND nickname = #{pojo.nickname} </if>
+            <if test="pojo.account != null"> AND account = #{pojo.account} </if>
+            <if test="pojo.pswd != null"> AND pswd = #{pojo.pswd} </if>
+            <if test="pojo.createTime != null"> AND create_time = #{pojo.createTime} </if>
+            <if test="pojo.lastLoginTime != null"> AND last_login_time = #{pojo.lastLoginTime} </if>
+            <if test="pojo.enable != null"> AND enable = #{pojo.enable} </if>
         </where>
-        LIMIT 1000
+        LIMIT 1000 
     </select>
 
     <!--auto generated Code-->

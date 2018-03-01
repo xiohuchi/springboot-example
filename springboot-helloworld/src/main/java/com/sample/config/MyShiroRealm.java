@@ -22,9 +22,9 @@ import java.util.List;
  * 获取用户的角色和权限信息
  * Created by bamboo on 2017/5/10.
  */
-public class ShiroRealm extends AuthorizingRealm {
+public class MyShiroRealm extends AuthorizingRealm {
 
-    private Logger logger = LoggerFactory.getLogger(ShiroRealm.class);
+    private Logger logger = LoggerFactory.getLogger(MyShiroRealm.class);
 
     //一般这里都写的是servic，我省略了service的接口和实现方法直接调用的dao
     @Autowired
@@ -49,19 +49,23 @@ public class ShiroRealm extends AuthorizingRealm {
         UUser uUser = uUserDao.selectByAcconut(token.getUsername());
 //        String md5Pwd = new Md5Hash("123", "lucare",2).toString();
         if (uUser != null) {
+
+
             // 若存在，将此用户存放到登录认证info中，无需自己做密码对比，Shiro会为我们进行密码对比校验
-            List<URole> rlist = uRoleDao.selectRoleByUid(uUser.getId());//获取用户角色
-            List<UPermission> plist = uPermissionDao.selectPermissionByUid(uUser.getId());//获取用户权限
-            List<String> roleStrlist = new ArrayList<String>();////用户的角色集合
-            List<String> perminsStrlist = new ArrayList<String>();//用户的权限集合
-            for (URole role : rlist) {
-                roleStrlist.add(role.getName());
-            }
-            for (UPermission uPermission : plist) {
-                perminsStrlist.add(uPermission.getName());
-            }
-            uUser.setRoleStrlist(roleStrlist);
-            uUser.setPerminsStrlist(perminsStrlist);
+//            List<URole> rlist = uRoleDao.selectRoleByUid(uUser.getId());//获取用户角色
+//            List<UPermission> plist = uPermissionDao.selectPermissionByUid(uUser.getId());//获取用户权限
+//            List<String> roleStrlist = new ArrayList<>();////用户的角色集合
+//            List<String> perminsStrlist = new ArrayList<>();//用户的权限集合
+//            for (URole role : rlist) {
+//                roleStrlist.add(role.getName());
+//            }
+//            for (UPermission uPermission : plist) {
+//                perminsStrlist.add(uPermission.getName());
+//            }
+//            uUser.setRoleStrlist(roleStrlist);
+//            uUser.setPerminsStrlist(perminsStrlist);
+
+
 //            Session session = SecurityUtils.getSubject().getSession();
 //            session.setAttribute("user", uUser);//成功则放入session
             // 若存在，将此用户存放到登录认证info中，无需自己做密码对比，Shiro会为我们进行密码对比校验

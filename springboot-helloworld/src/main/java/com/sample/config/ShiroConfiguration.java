@@ -1,11 +1,13 @@
 package com.sample.config;
 
-import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import com.sample.controller.BaseController;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -21,9 +23,11 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfiguration {
+    private Logger logger = LoggerFactory.getLogger(ShiroConfiguration.class);
 
     @Bean(name = "lifecycleBeanPostProcessor")
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+        logger.debug("lifecycleBeanPostProcessor");
         return new LifecycleBeanPostProcessor();
     }
 
@@ -40,21 +44,24 @@ public class ShiroConfiguration {
 
     @Bean(name = "shiroRealm")
     @DependsOn("lifecycleBeanPostProcessor")
-    public ShiroRealm shiroRealm() {
-        ShiroRealm realm = new ShiroRealm();
+    public MyShiroRealm shiroRealm() {
+        logger.debug("shiroRealm");
+        MyShiroRealm realm = new MyShiroRealm();
 //        realm.setCredentialsMatcher(hashedCredentialsMatcher());
         return realm;
     }
 
     @Bean(name = "ehCacheManager")
     @DependsOn("lifecycleBeanPostProcessor")
-    public EhCacheManager ehCacheManager(){
+    public EhCacheManager ehCacheManager() {
+        logger.debug("ehCacheManager");
         EhCacheManager ehCacheManager = new EhCacheManager();
         return ehCacheManager;
     }
 
     @Bean(name = "securityManager")
-    public DefaultWebSecurityManager securityManager(){
+    public DefaultWebSecurityManager securityManager() {
+        logger.debug("securityManager");
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(shiroRealm());
         securityManager.setCacheManager(ehCacheManager());//用户授权/认证信息Cache, 采用EhCache 缓存
@@ -62,7 +69,8 @@ public class ShiroConfiguration {
     }
 
     @Bean(name = "shiroFilter")
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager  securityManager){
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager securityManager) {
+        logger.debug("shiroFilterFactoryBean");
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
 
@@ -73,14 +81,14 @@ public class ShiroConfiguration {
 //        shiroFilterFactoryBean.setFilters(filters);
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         Map<String, String> filterChainDefinitionManager = new LinkedHashMap<>();
-        filterChainDefinitionManager.put("/logout", "logout");
-        filterChainDefinitionManager.put("/user/**", "authc,roles[user]");
-        filterChainDefinitionManager.put("/shop/**", "authc,roles[shop]");
-        filterChainDefinitionManager.put("/admin/**", "authc,roles[admin]");
-        filterChainDefinitionManager.put("/login", "anon");//anon 可以理解为不拦截
-        filterChainDefinitionManager.put("/ajaxLogin", "anon");//anon 可以理解为不拦截
-        filterChainDefinitionManager.put("/statistic/**",  "anon");//静态资源不拦截
-        filterChainDefinitionManager.put("/**",  "authc,roles[user]");//其他资源全部拦截
+        //authc是需要用户登陆才能访问的页面，anon是不需要登陆就能直接访问的页面
+//        filterChainDefinitionManager.put("/logout", "logout");
+//        filterChainDefinitionManager.put("/user/**", "authc,roles[user]");
+//        filterChainDefinitionManager.put("/shop/**", "authc,roles[shop]");
+//        filterChainDefinitionManager.put("/admin/**", "authc,roles[admin]");
+
+        filterChainDefinitionManager.put("/api/user/**", "anon");//anon 可以理解为不拦截
+        filterChainDefinitionManager.put("/api/**", "authc,roles[user]");//其他资源全部拦截
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionManager);
 
         shiroFilterFactoryBean.setLoginUrl("/login");
@@ -93,6 +101,7 @@ public class ShiroConfiguration {
     @Bean
     @ConditionalOnMissingBean
     public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+        logger.debug("DefaultAdvisorAutoProxyCreator");
         DefaultAdvisorAutoProxyCreator daap = new DefaultAdvisorAutoProxyCreator();
         daap.setProxyTargetClass(true);
         return daap;
@@ -100,6 +109,7 @@ public class ShiroConfiguration {
 
     @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(DefaultWebSecurityManager securityManager) {
+        logger.debug("authorizationAttributeSourceAdvisor");
         AuthorizationAttributeSourceAdvisor aasa = new AuthorizationAttributeSourceAdvisor();
         aasa.setSecurityManager(securityManager);
         return aasa;
