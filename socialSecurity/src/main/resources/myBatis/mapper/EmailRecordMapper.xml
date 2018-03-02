@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dianmi.mapper.EmailRecordMapper">
+	<resultMap id="BaseResultMap" type="emailRecord">
+		<constructor>
+			<idArg column="er_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+			<arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+			<arg column="email_to" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="email_cc" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="send_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+			<arg column="email_topic" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="reporting_period" jdbcType="VARCHAR" javaType="java.lang.String" />
+		</constructor>
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="emailRecord">
+		<constructor>
+			<idArg column="er_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+			<arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+			<arg column="email_to" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="email_cc" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="send_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+			<arg column="email_topic" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="reporting_period" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="email_context" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+		</constructor>
+	</resultMap>
+	<sql id="Base_Column_List">
+		er_id, user_id, email_to, email_cc, send_date, email_topic,
+		reporting_period
+	</sql>
+	<sql id="Blob_Column_List">
+		email_context
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from email_record
+		where er_id = #{erId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		email_record
+		where er_id = #{erId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="emailRecord">
+		insert into email_record
+		(er_id, user_id, email_to,
+		email_cc, send_date, email_topic,
+		reporting_period, email_context)
+		values (#{erId,jdbcType=INTEGER},
+		#{userId,jdbcType=INTEGER},
+		#{emailTo,jdbcType=VARCHAR},
+		#{emailCc,jdbcType=VARCHAR}, #{sendDate,jdbcType=TIMESTAMP},
+		#{emailTopic,jdbcType=VARCHAR},
+		#{reportingPeriod,jdbcType=VARCHAR},
+		#{emailContext,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="emailRecord">
+		insert into email_record
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="erId != null">
+				er_id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="emailTo != null">
+				email_to,
+			</if>
+			<if test="emailCc != null">
+				email_cc,
+			</if>
+			<if test="sendDate != null">
+				send_date,
+			</if>
+			<if test="emailTopic != null">
+				email_topic,
+			</if>
+			<if test="reportingPeriod != null">
+				reporting_period,
+			</if>
+			<if test="emailContext != null">
+				email_context,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="erId != null">
+				#{erId,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="emailTo != null">
+				#{emailTo,jdbcType=VARCHAR},
+			</if>
+			<if test="emailCc != null">
+				#{emailCc,jdbcType=VARCHAR},
+			</if>
+			<if test="sendDate != null">
+				#{sendDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="emailTopic != null">
+				#{emailTopic,jdbcType=VARCHAR},
+			</if>
+			<if test="reportingPeriod != null">
+				#{reportingPeriod,jdbcType=VARCHAR},
+			</if>
+			<if test="emailContext != null">
+				#{emailContext,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="emailRecord">
+		update email_record
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="emailTo != null">
+				email_to = #{emailTo,jdbcType=VARCHAR},
+			</if>
+			<if test="emailCc != null">
+				email_cc = #{emailCc,jdbcType=VARCHAR},
+			</if>
+			<if test="sendDate != null">
+				send_date = #{sendDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="emailTopic != null">
+				email_topic = #{emailTopic,jdbcType=VARCHAR},
+			</if>
+			<if test="reportingPeriod != null">
+				reporting_period = #{reportingPeriod,jdbcType=VARCHAR},
+			</if>
+			<if test="emailContext != null">
+				email_context = #{emailContext,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where er_id = #{erId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="emailRecord">
+		update
+		email_record
+		set user_id = #{userId,jdbcType=INTEGER},
+		email_to =
+		#{emailTo,jdbcType=VARCHAR},
+		email_cc = #{emailCc,jdbcType=VARCHAR},
+		send_date = #{sendDate,jdbcType=TIMESTAMP},
+		email_topic =
+		#{emailTopic,jdbcType=VARCHAR},
+		reporting_period =
+		#{reportingPeriod,jdbcType=VARCHAR},
+		email_context =
+		#{emailContext,jdbcType=LONGVARCHAR}
+		where er_id =
+		#{erId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="emailRecord">
+		update
+		email_record
+		set user_id = #{userId,jdbcType=INTEGER},
+		email_to =
+		#{emailTo,jdbcType=VARCHAR},
+		email_cc = #{emailCc,jdbcType=VARCHAR},
+		send_date = #{sendDate,jdbcType=TIMESTAMP},
+		email_topic =
+		#{emailTopic,jdbcType=VARCHAR},
+		reporting_period =
+		#{reportingPeriod,jdbcType=VARCHAR}
+		where er_id =
+		#{erId,jdbcType=INTEGER}
+	</update>
+
+	<select id="selectByUserId" resultMap="ResultMapWithBLOBs">
+		select 
+		* 
+		from 
+		email_record 
+		where
+		reporting_period = #{reportingPeriod} 
+		and
+		user_id = #{userId}
+	</select>
+
+</mapper>

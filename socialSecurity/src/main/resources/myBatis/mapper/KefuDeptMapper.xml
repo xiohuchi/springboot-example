@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dianmi.mapper.KefuDeptMapper">
+	<resultMap id="BaseResultMap" type="com.dianmi.model.KefuDept">
+		<constructor>
+			<idArg column="kd_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+			<arg column="dept_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+		</constructor>
+	</resultMap>
+	<sql id="Base_Column_List">
+		kd_id, dept_name
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from kefu_dept
+		where kd_id = #{kdId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		kefu_dept
+		where kd_id = #{kdId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.dianmi.model.KefuDept">
+		insert into kefu_dept (kd_id,
+		dept_name)
+		values (#{kdId,jdbcType=INTEGER},
+		#{deptName,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.dianmi.model.KefuDept">
+		insert into kefu_dept
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="kd_id != null">
+				kd_id,
+			</if>
+			<if test="deptName != null">
+				dept_name,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="kd_id != null">
+				#{kdId,jdbcType=INTEGER},
+			</if>
+			<if test="deptName != null">
+				#{deptName,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.dianmi.model.KefuDept">
+		update kefu_dept
+		<set>
+			<if test="deptName != null">
+				dept_name = #{deptName,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where kd_id = #{kdId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.dianmi.model.KefuDept">
+		update kefu_dept
+		set dept_name = #{deptName,jdbcType=VARCHAR}
+		where ke_id =
+		#{kdId,jdbcType=INTEGER}
+	</update>
+
+	<select id="selectDepts" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from
+		kefu_dept
+	</select>
+
+</mapper>

@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dianmi.mapper.ZhangdanMingxiMapper">
+    <resultMap id="BaseResultMap" type="com.dianmi.model.ZhangdanMingxi">
+        <constructor>
+            <idArg column="zd_id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="zaice_id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="yuqi_yanglao_gongsi" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="yuqi_yanglao_geren" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="yuqi_jiben_yiliao_gongsi" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="yuqi_jiben_yiliao_geren" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="yuqi_dabing_yiliao_gongsi" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="yuqi_dabing_yiliao_geren" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="yuqi_shiye_gongsi" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="yuqi_shiye_geren" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="yuqi_gongshang_gongsi" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="yuqi_shengyu_gongsi" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="yuqi_gongjijin_gongsi" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="yuqi_gongjijin_geren" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="yuqi_qita_gongsi" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="yuqi_qita_geren" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="yuqi_canbaojin_gongsi" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="yuqi_fuwufei" javaType="java.lang.Double" jdbcType="DOUBLE"/>
+            <arg column="shiji_yanglao_gongsi" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="shiji_yanglao_geren" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="shiji_jiben_yiliao_gongsi" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="shiji_jiben_yiliao_geren" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="shiji_dabing_yiliao_gongsi" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="shiji_dabing_yiliao_geren" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="shiji_shiye_gongsi" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="shiji_shiye_geren" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="shiji_gongshang_gongsi" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="shiji_shengyu_gongsi" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="shiji_gongjijin_gongsi" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="shiji_gongjijin_geren" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="shiji_qita_gongsi" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="shiji_qita_geren" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="shiji_canbaojin_gongsi" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="shiji_fuwufei" javaType="java.lang.Double" jdbcType="DOUBLE"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+		zd_id, zaice_id, yuqi_yanglao_gongsi, yuqi_yanglao_geren,
+		yuqi_jiben_yiliao_gongsi,
+		yuqi_jiben_yiliao_geren,
+		yuqi_dabing_yiliao_gongsi, yuqi_dabing_yiliao_geren,
+		yuqi_shiye_gongsi,
+		yuqi_shiye_geren, yuqi_gongshang_gongsi,
+		yuqi_shengyu_gongsi, yuqi_gongjijin_gongsi,
+		yuqi_gongjijin_geren,
+		yuqi_qita_gongsi, yuqi_qita_geren,
+		yuqi_canbaojin_gongsi, yuqi_fuwufei,
+		shiji_yanglao_gongsi, shiji_yanglao_geren, shiji_jiben_yiliao_gongsi,
+		shiji_jiben_yiliao_geren,
+		shiji_dabing_yiliao_gongsi,
+		shiji_dabing_yiliao_geren, shiji_shiye_gongsi,
+		shiji_shiye_geren,
+		shiji_gongshang_gongsi, shiji_shengyu_gongsi, shiji_gongjijin_gongsi,
+		shiji_gongjijin_geren, shiji_qita_gongsi, shiji_qita_geren,
+		shiji_canbaojin_gongsi,
+		shiji_fuwufei
+	</sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from zhangdan_mingxi
+        where zd_id = #{zdId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		zhangdan_mingxi
+		where zd_id = #{zdId,jdbcType=INTEGER}
+	</delete>
+    <insert id="insert" parameterType="com.dianmi.model.ZhangdanMingxi">
+		insert into zhangdan_mingxi
+		(zd_id, zaice_id, yuqi_yanglao_gongsi,
+		yuqi_yanglao_geren,
+		yuqi_jiben_yiliao_gongsi,
+		yuqi_jiben_yiliao_geren,
+		yuqi_dabing_yiliao_gongsi,
+		yuqi_dabing_yiliao_geren, yuqi_shiye_gongsi,
+		yuqi_shiye_geren,
+		yuqi_gongshang_gongsi, yuqi_shengyu_gongsi,
+		yuqi_gongjijin_gongsi,
+		yuqi_gongjijin_geren, yuqi_qita_gongsi,
+		yuqi_qita_geren,
+		yuqi_canbaojin_gongsi, yuqi_fuwufei,
+		shiji_yanglao_gongsi,
+		shiji_yanglao_geren, shiji_jiben_yiliao_gongsi,
+		shiji_jiben_yiliao_geren, shiji_dabing_yiliao_gongsi,
+		shiji_dabing_yiliao_geren, shiji_shiye_gongsi,
+		shiji_shiye_geren,
+		shiji_gongshang_gongsi,
+		shiji_shengyu_gongsi, shiji_gongjijin_gongsi,
+		shiji_gongjijin_geren, shiji_qita_gongsi,
+		shiji_qita_geren,
+		shiji_canbaojin_gongsi,
+		shiji_fuwufei)
+		values (#{zdId,jdbcType=INTEGER},
+		#{zaiceId,jdbcType=INTEGER},
+		#{yuqiYanglaoGongsi,jdbcType=DOUBLE},
+		#{yuqiYanglaoGeren,jdbcType=DOUBLE},
+		#{yuqiJibenYiliaoGongsi,jdbcType=DOUBLE},
+		#{yuqiJibenYiliaoGeren,jdbcType=DOUBLE},
+		#{yuqiDabingYiliaoGongsi,jdbcType=DOUBLE},
+		#{yuqiDabingYiliaoGeren,jdbcType=DOUBLE},
+		#{yuqiShiyeGongsi,jdbcType=DOUBLE}, #{yuqiShiyeGeren,jdbcType=DOUBLE},
+		#{yuqiGongshangGongsi,jdbcType=DOUBLE},
+		#{yuqiShengyuGongsi,jdbcType=DOUBLE},
+		#{yuqiGongjijinGongsi,jdbcType=DOUBLE},
+		#{yuqiGongjijinGeren,jdbcType=DOUBLE},
+		#{yuqiQitaGongsi,jdbcType=DOUBLE}, #{yuqiQitaGeren,jdbcType=DOUBLE},
+		#{yuqiCanbaojinGongsi,jdbcType=DOUBLE},
+		#{yuqiFuwufei,jdbcType=DOUBLE}, #{shijiYanglaoGongsi,jdbcType=DOUBLE},
+		#{shijiYanglaoGeren,jdbcType=DOUBLE},
+		#{shijiJibenYiliaoGongsi,jdbcType=DOUBLE},
+		#{shijiJibenYiliaoGeren,jdbcType=DOUBLE},
+		#{shijiDabingYiliaoGongsi,jdbcType=DOUBLE},
+		#{shijiDabingYiliaoGeren,jdbcType=DOUBLE},
+		#{shijiShiyeGongsi,jdbcType=DOUBLE},
+		#{shijiShiyeGeren,jdbcType=DOUBLE},
+		#{shijiGongshangGongsi,jdbcType=DOUBLE},
+		#{shijiShengyuGongsi,jdbcType=DOUBLE},
+		#{shijiGongjijinGongsi,jdbcType=DOUBLE},
+		#{shijiGongjijinGeren,jdbcType=DOUBLE},
+		#{shijiQitaGongsi,jdbcType=DOUBLE},
+		#{shijiQitaGeren,jdbcType=DOUBLE},
+		#{shijiCanbaojinGongsi,jdbcType=DOUBLE},
+		#{shijiFuwufei,jdbcType=DOUBLE})
+	</insert>
+    <insert id="insertSelective" parameterType="com.dianmi.model.ZhangdanMingxi"
+            useGeneratedKeys="true" keyProperty="zdId">
+        insert into zhangdan_mingxi
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="zdId != null">
+                zd_id,
+            </if>
+            <if test="zaiceId != null">
+                zaice_id,
+            </if>
+            <if test="yuqiYanglaoGongsi != null">
+                yuqi_yanglao_gongsi,
+            </if>
+            <if test="yuqiYanglaoGeren != null">
+                yuqi_yanglao_geren,
+            </if>
+            <if test="yuqiJibenYiliaoGongsi != null">
+                yuqi_jiben_yiliao_gongsi,
+            </if>
+            <if test="yuqiJibenYiliaoGeren != null">
+                yuqi_jiben_yiliao_geren,
+            </if>
+            <if test="yuqiDabingYiliaoGongsi != null">
+                yuqi_dabing_yiliao_gongsi,
+            </if>
+            <if test="yuqiDabingYiliaoGeren != null">
+                yuqi_dabing_yiliao_geren,
+            </if>
+            <if test="yuqiShiyeGongsi != null">
+                yuqi_shiye_gongsi,
+            </if>
+            <if test="yuqiShiyeGeren != null">
+                yuqi_shiye_geren,
+            </if>
+            <if test="yuqiGongshangGongsi != null">
+                yuqi_gongshang_gongsi,
+            </if>
+            <if test="yuqiShengyuGongsi != null">
+                yuqi_shengyu_gongsi,
+            </if>
+            <if test="yuqiGongjijinGongsi != null">
+                yuqi_gongjijin_gongsi,
+            </if>
+            <if test="yuqiGongjijinGeren != null">
+                yuqi_gongjijin_geren,
+            </if>
+            <if test="yuqiQitaGongsi != null">
+                yuqi_qita_gongsi,
+            </if>
+            <if test="yuqiQitaGeren != null">
+                yuqi_qita_geren,
+            </if>
+            <if test="yuqiCanbaojinGongsi != null">
+                yuqi_canbaojin_gongsi,
+            </if>
+            <if test="yuqiFuwufei != null">
+                yuqi_fuwufei,
+            </if>
+            <if test="shijiYanglaoGongsi != null">
+                shiji_yanglao_gongsi,
+            </if>
+            <if test="shijiYanglaoGeren != null">
+                shiji_yanglao_geren,
+            </if>
+            <if test="shijiJibenYiliaoGongsi != null">
+                shiji_jiben_yiliao_gongsi,
+            </if>
+            <if test="shijiJibenYiliaoGeren != null">
+                shiji_jiben_yiliao_geren,
+            </if>
+            <if test="shijiDabingYiliaoGongsi != null">
+                shiji_dabing_yiliao_gongsi,
+            </if>
+            <if test="shijiDabingYiliaoGeren != null">
+                shiji_dabing_yiliao_geren,
+            </if>
+            <if test="shijiShiyeGongsi != null">
+                shiji_shiye_gongsi,
+            </if>
+            <if test="shijiShiyeGeren != null">
+                shiji_shiye_geren,
+            </if>
+            <if test="shijiGongshangGongsi != null">
+                shiji_gongshang_gongsi,
+            </if>
+            <if test="shijiShengyuGongsi != null">
+                shiji_shengyu_gongsi,
+            </if>
+            <if test="shijiGongjijinGongsi != null">
+                shiji_gongjijin_gongsi,
+            </if>
+            <if test="shijiGongjijinGeren != null">
+                shiji_gongjijin_geren,
+            </if>
+            <if test="shijiQitaGongsi != null">
+                shiji_qita_gongsi,
+            </if>
+            <if test="shijiQitaGeren != null">
+                shiji_qita_geren,
+            </if>
+            <if test="shijiCanbaojinGongsi != null">
+                shiji_canbaojin_gongsi,
+            </if>
+            <if test="shijiFuwufei != null">
+                shiji_fuwufei,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="zdId != null">
+                #{zdId,jdbcType=INTEGER},
+            </if>
+            <if test="zaiceId != null">
+                #{zaiceId,jdbcType=INTEGER},
+            </if>
+            <if test="yuqiYanglaoGongsi != null">
+                #{yuqiYanglaoGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiYanglaoGeren != null">
+                #{yuqiYanglaoGeren,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiJibenYiliaoGongsi != null">
+                #{yuqiJibenYiliaoGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiJibenYiliaoGeren != null">
+                #{yuqiJibenYiliaoGeren,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiDabingYiliaoGongsi != null">
+                #{yuqiDabingYiliaoGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiDabingYiliaoGeren != null">
+                #{yuqiDabingYiliaoGeren,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiShiyeGongsi != null">
+                #{yuqiShiyeGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiShiyeGeren != null">
+                #{yuqiShiyeGeren,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiGongshangGongsi != null">
+                #{yuqiGongshangGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiShengyuGongsi != null">
+                #{yuqiShengyuGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiGongjijinGongsi != null">
+                #{yuqiGongjijinGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiGongjijinGeren != null">
+                #{yuqiGongjijinGeren,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiQitaGongsi != null">
+                #{yuqiQitaGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiQitaGeren != null">
+                #{yuqiQitaGeren,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiCanbaojinGongsi != null">
+                #{yuqiCanbaojinGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiFuwufei != null">
+                #{yuqiFuwufei,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiYanglaoGongsi != null">
+                #{shijiYanglaoGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiYanglaoGeren != null">
+                #{shijiYanglaoGeren,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiJibenYiliaoGongsi != null">
+                #{shijiJibenYiliaoGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiJibenYiliaoGeren != null">
+                #{shijiJibenYiliaoGeren,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiDabingYiliaoGongsi != null">
+                #{shijiDabingYiliaoGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiDabingYiliaoGeren != null">
+                #{shijiDabingYiliaoGeren,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiShiyeGongsi != null">
+                #{shijiShiyeGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiShiyeGeren != null">
+                #{shijiShiyeGeren,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiGongshangGongsi != null">
+                #{shijiGongshangGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiShengyuGongsi != null">
+                #{shijiShengyuGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiGongjijinGongsi != null">
+                #{shijiGongjijinGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiGongjijinGeren != null">
+                #{shijiGongjijinGeren,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiQitaGongsi != null">
+                #{shijiQitaGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiQitaGeren != null">
+                #{shijiQitaGeren,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiCanbaojinGongsi != null">
+                #{shijiCanbaojinGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiFuwufei != null">
+                #{shijiFuwufei,jdbcType=DOUBLE},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.dianmi.model.ZhangdanMingxi">
+        update zhangdan_mingxi
+        <set>
+            <if test="zaiceId != null">
+                zaice_id = #{zaiceId,jdbcType=INTEGER},
+            </if>
+            <if test="yuqiYanglaoGongsi != null">
+                yuqi_yanglao_gongsi =
+                #{yuqiYanglaoGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiYanglaoGeren != null">
+                yuqi_yanglao_geren = #{yuqiYanglaoGeren,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiJibenYiliaoGongsi != null">
+                yuqi_jiben_yiliao_gongsi =
+                #{yuqiJibenYiliaoGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiJibenYiliaoGeren != null">
+                yuqi_jiben_yiliao_geren =
+                #{yuqiJibenYiliaoGeren,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiDabingYiliaoGongsi != null">
+                yuqi_dabing_yiliao_gongsi =
+                #{yuqiDabingYiliaoGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiDabingYiliaoGeren != null">
+                yuqi_dabing_yiliao_geren =
+                #{yuqiDabingYiliaoGeren,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiShiyeGongsi != null">
+                yuqi_shiye_gongsi = #{yuqiShiyeGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiShiyeGeren != null">
+                yuqi_shiye_geren = #{yuqiShiyeGeren,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiGongshangGongsi != null">
+                yuqi_gongshang_gongsi =
+                #{yuqiGongshangGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiShengyuGongsi != null">
+                yuqi_shengyu_gongsi =
+                #{yuqiShengyuGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiGongjijinGongsi != null">
+                yuqi_gongjijin_gongsi =
+                #{yuqiGongjijinGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiGongjijinGeren != null">
+                yuqi_gongjijin_geren =
+                #{yuqiGongjijinGeren,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiQitaGongsi != null">
+                yuqi_qita_gongsi = #{yuqiQitaGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiQitaGeren != null">
+                yuqi_qita_geren = #{yuqiQitaGeren,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiCanbaojinGongsi != null">
+                yuqi_canbaojin_gongsi =
+                #{yuqiCanbaojinGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="yuqiFuwufei != null">
+                yuqi_fuwufei = #{yuqiFuwufei,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiYanglaoGongsi != null">
+                shiji_yanglao_gongsi =
+                #{shijiYanglaoGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiYanglaoGeren != null">
+                shiji_yanglao_geren =
+                #{shijiYanglaoGeren,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiJibenYiliaoGongsi != null">
+                shiji_jiben_yiliao_gongsi =
+                #{shijiJibenYiliaoGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiJibenYiliaoGeren != null">
+                shiji_jiben_yiliao_geren =
+                #{shijiJibenYiliaoGeren,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiDabingYiliaoGongsi != null">
+                shiji_dabing_yiliao_gongsi =
+                #{shijiDabingYiliaoGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiDabingYiliaoGeren != null">
+                shiji_dabing_yiliao_geren =
+                #{shijiDabingYiliaoGeren,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiShiyeGongsi != null">
+                shiji_shiye_gongsi = #{shijiShiyeGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiShiyeGeren != null">
+                shiji_shiye_geren = #{shijiShiyeGeren,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiGongshangGongsi != null">
+                shiji_gongshang_gongsi =
+                #{shijiGongshangGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiShengyuGongsi != null">
+                shiji_shengyu_gongsi =
+                #{shijiShengyuGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiGongjijinGongsi != null">
+                shiji_gongjijin_gongsi =
+                #{shijiGongjijinGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiGongjijinGeren != null">
+                shiji_gongjijin_geren =
+                #{shijiGongjijinGeren,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiQitaGongsi != null">
+                shiji_qita_gongsi = #{shijiQitaGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiQitaGeren != null">
+                shiji_qita_geren = #{shijiQitaGeren,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiCanbaojinGongsi != null">
+                shiji_canbaojin_gongsi =
+                #{shijiCanbaojinGongsi,jdbcType=DOUBLE},
+            </if>
+            <if test="shijiFuwufei != null">
+                shiji_fuwufei = #{shijiFuwufei,jdbcType=DOUBLE},
+            </if>
+        </set>
+        where zd_id = #{zdId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.dianmi.model.ZhangdanMingxi">
+		update
+		zhangdan_mingxi
+		set zaice_id = #{zaiceId,jdbcType=INTEGER},
+		yuqi_yanglao_gongsi = #{yuqiYanglaoGongsi,jdbcType=DOUBLE},
+		yuqi_yanglao_geren = #{yuqiYanglaoGeren,jdbcType=DOUBLE},
+		yuqi_jiben_yiliao_gongsi = #{yuqiJibenYiliaoGongsi,jdbcType=DOUBLE},
+		yuqi_jiben_yiliao_geren = #{yuqiJibenYiliaoGeren,jdbcType=DOUBLE},
+		yuqi_dabing_yiliao_gongsi = #{yuqiDabingYiliaoGongsi,jdbcType=DOUBLE},
+		yuqi_dabing_yiliao_geren = #{yuqiDabingYiliaoGeren,jdbcType=DOUBLE},
+		yuqi_shiye_gongsi = #{yuqiShiyeGongsi,jdbcType=DOUBLE},
+		yuqi_shiye_geren = #{yuqiShiyeGeren,jdbcType=DOUBLE},
+		yuqi_gongshang_gongsi = #{yuqiGongshangGongsi,jdbcType=DOUBLE},
+		yuqi_shengyu_gongsi = #{yuqiShengyuGongsi,jdbcType=DOUBLE},
+		yuqi_gongjijin_gongsi = #{yuqiGongjijinGongsi,jdbcType=DOUBLE},
+		yuqi_gongjijin_geren = #{yuqiGongjijinGeren,jdbcType=DOUBLE},
+		yuqi_qita_gongsi = #{yuqiQitaGongsi,jdbcType=DOUBLE},
+		yuqi_qita_geren =
+		#{yuqiQitaGeren,jdbcType=DOUBLE},
+		yuqi_canbaojin_gongsi =
+		#{yuqiCanbaojinGongsi,jdbcType=DOUBLE},
+		yuqi_fuwufei =
+		#{yuqiFuwufei,jdbcType=DOUBLE},
+		shiji_yanglao_gongsi =
+		#{shijiYanglaoGongsi,jdbcType=DOUBLE},
+		shiji_yanglao_geren =
+		#{shijiYanglaoGeren,jdbcType=DOUBLE},
+		shiji_jiben_yiliao_gongsi =
+		#{shijiJibenYiliaoGongsi,jdbcType=DOUBLE},
+		shiji_jiben_yiliao_geren =
+		#{shijiJibenYiliaoGeren,jdbcType=DOUBLE},
+		shiji_dabing_yiliao_gongsi =
+		#{shijiDabingYiliaoGongsi,jdbcType=DOUBLE},
+		shiji_dabing_yiliao_geren =
+		#{shijiDabingYiliaoGeren,jdbcType=DOUBLE},
+		shiji_shiye_gongsi =
+		#{shijiShiyeGongsi,jdbcType=DOUBLE},
+		shiji_shiye_geren =
+		#{shijiShiyeGeren,jdbcType=DOUBLE},
+		shiji_gongshang_gongsi =
+		#{shijiGongshangGongsi,jdbcType=DOUBLE},
+		shiji_shengyu_gongsi =
+		#{shijiShengyuGongsi,jdbcType=DOUBLE},
+		shiji_gongjijin_gongsi =
+		#{shijiGongjijinGongsi,jdbcType=DOUBLE},
+		shiji_gongjijin_geren =
+		#{shijiGongjijinGeren,jdbcType=DOUBLE},
+		shiji_qita_gongsi =
+		#{shijiQitaGongsi,jdbcType=DOUBLE},
+		shiji_qita_geren =
+		#{shijiQitaGeren,jdbcType=DOUBLE},
+		shiji_canbaojin_gongsi =
+		#{shijiCanbaojinGongsi,jdbcType=DOUBLE},
+		shiji_fuwufei =
+		#{shijiFuwufei,jdbcType=DOUBLE}
+		where zd_id = #{zdId,jdbcType=INTEGER}
+	</update>
+
+    <resultMap id="zhangdanMingxiPo" type="zhangdanMingxiPo">
+        <result column="zd_id" javaType="int" jdbcType="INTEGER"
+                property="zdId"/>
+        <result column="customer_id" javaType="java.lang.Integer"
+                jdbcType="INTEGER" property="customerId"/>
+        <result column="supplier_id" javaType="java.lang.Integer"
+                jdbcType="INTEGER" property="supplierId"/>
+        <result column="zaice_id" javaType="java.lang.Integer"
+                jdbcType="INTEGER" property="zaiceId"/>
+        <result column="employee_name" javaType="string" jdbcType="VARCHAR"
+                property="employeeName"/>
+        <result column="city" javaType="string" jdbcType="VARCHAR"
+                property="city"/>
+        <result column="yuqi_yanglao_gongsi" javaType="double"
+                jdbcType="DOUBLE" property="yuqiYanglaoGongsi"/>
+        <result column="yuqi_yanglao_geren" javaType="double" jdbcType="DOUBLE"
+                property="yuqiYanglaoGeren"/>
+        <result column="yuqi_jiben_yiliao_gongsi" javaType="double"
+                jdbcType="DOUBLE" property="yuqiJibenYiliaoGongsi"/>
+        <result column="yuqi_jiben_yiliao_geren" javaType="double"
+                jdbcType="DOUBLE" property="yuqiJibenYiliaoGeren"/>
+        <result column="yuqi_dabing_yiliao_gongsi" javaType="double"
+                jdbcType="DOUBLE" property="yuqiDabingYiliaoGongsi"/>
+        <result column="yuqi_dabing_yiliao_geren" javaType="double"
+                jdbcType="DOUBLE" property="yuqiDabingYiliaoGeren"/>
+        <result column="yuqi_shiye_gongsi" javaType="java.lang.Double"
+                jdbcType="DOUBLE" property="yuqiShiyeGongsi"/>
+        <result column="yuqi_shiye_geren" javaType="java.lang.Double"
+                jdbcType="DOUBLE" property="yuqiShiyeGeren"/>
+        <result column="yuqi_gongshang_gongsi" javaType="double"
+                jdbcType="DOUBLE" property="yuqiGongshangGongsi"/>
+        <result column="yuqi_shengyu_gongsi" javaType="double"
+                jdbcType="DOUBLE" property="yuqiShengyuGongsi"/>
+        <result column="yuqi_gongjijin_gongsi" javaType="double"
+                jdbcType="DOUBLE" property="yuqiGongjijinGongsi"/>
+        <result column="yuqi_gongjijin_geren" javaType="double"
+                jdbcType="DOUBLE" property="yuqiGongjijinGeren"/>
+        <result column="yuqi_qita_gongsi" javaType="double" jdbcType="DOUBLE"
+                property="yuqiQitaGongsi"/>
+        <result column="yuqi_qita_geren" javaType="double" jdbcType="DOUBLE"
+                property="yuqiQitaGeren"/>
+        <result column="yuqi_canbaojin_gongsi" javaType="double"
+                jdbcType="DOUBLE" property="yuqiCanbaojinGongsi"/>
+        <result column="yuqi_fuwufei" javaType="double" jdbcType="DOUBLE"
+                property="yuqiFuwufei"/>
+        <result column="shiji_yanglao_gongsi" javaType="double"
+                jdbcType="DOUBLE" property="shijiYanglaoGongsi"/>
+        <result column="shiji_yanglao_geren" javaType="double"
+                jdbcType="DOUBLE" property="shijiYanglaoGeren"/>
+        <result column="shiji_jiben_yiliao_gongsi" javaType="double"
+                jdbcType="DOUBLE" property="shijiJibenYiliaoGongsi"/>
+        <result column="shiji_jiben_yiliao_geren" javaType="double"
+                jdbcType="DOUBLE" property="shijiJibenYiliaoGeren"/>
+        <result column="shiji_dabing_yiliao_gongsi" javaType="double"
+                jdbcType="DOUBLE" property="shijiDabingYiliaoGongsi"/>
+        <result column="shiji_dabing_yiliao_geren" javaType="double"
+                jdbcType="DOUBLE" property="shijiDabingYiliaoGeren"/>
+        <result column="shiji_shiye_gongsi" javaType="java.lang.Double"
+                jdbcType="DOUBLE" property="shijiShiyeGongsi"/>
+        <result column="shiji_shiye_geren" javaType="java.lang.Double"
+                jdbcType="DOUBLE" property="shijiShiyeGeren"/>
+        <result column="shiji_gongshang_gongsi" javaType="double"
+                jdbcType="DOUBLE" property="shijiGongshangGongsi"/>
+        <result column="shiji_shengyu_gongsi" javaType="double"
+                jdbcType="DOUBLE" property="shijiShengyuGongsi"/>
+        <result column="shiji_gongjijin_gongsi" javaType="double"
+                jdbcType="DOUBLE" property="shijiGongjijinGongsi"/>
+        <result column="shiji_gongjijin_geren" javaType="double"
+                jdbcType="DOUBLE" property="shijiGongjijinGeren"/>
+        <result column="shiji_qita_gongsi" javaType="double" jdbcType="DOUBLE"
+                property="shijiQitaGongsi"/>
+        <result column="shiji_qita_geren" javaType="double" jdbcType="DOUBLE"
+                property="shijiQitaGeren"/>
+        <result column="shiji_canbaojin_gongsi" javaType="double"
+                jdbcType="DOUBLE" property="shijiCanbaojinGongsi"/>
+        <result column="shiji_fuwufei" javaType="double" jdbcType="DOUBLE"
+                property="shijiFuwufei"/>
+    </resultMap>
+
+    <!-- 供应商账单明细 -->
+    <select id="supplierZhangdanMingxi" resultMap="zhangdanMingxiPo">
+		SELECT
+		zm.zd_id,
+		zc.customer_id,
+		zc.supplier_id,
+		zm.zaice_id,
+		zc.employee_name,
+		zc.city,
+		zm.yuqi_yanglao_gongsi,
+		zm.yuqi_yanglao_geren,
+		zm.yuqi_jiben_yiliao_gongsi,
+		zm.yuqi_jiben_yiliao_geren,
+		zm.yuqi_dabing_yiliao_gongsi,
+		zm.yuqi_dabing_yiliao_geren,
+		zm.yuqi_shiye_gongsi,
+		zm.yuqi_shiye_geren,
+		zm.yuqi_gongshang_gongsi,
+		zm.yuqi_shengyu_gongsi,
+		zm.yuqi_gongjijin_gongsi,
+		zm.yuqi_gongjijin_geren,
+		zm.yuqi_qita_gongsi,
+		zm.yuqi_qita_geren,
+		zm.yuqi_canbaojin_gongsi,
+		zm.yuqi_fuwufei,
+		zm.shiji_yanglao_gongsi,
+		zm.shiji_yanglao_geren,
+		zm.shiji_jiben_yiliao_gongsi,
+		zm.shiji_jiben_yiliao_geren,
+		zm.shiji_dabing_yiliao_gongsi,
+		zm.shiji_dabing_yiliao_geren,
+		zm.shiji_shiye_gongsi,
+		zm.shiji_shiye_geren,
+		zm.shiji_gongshang_gongsi,
+		zm.shiji_shengyu_gongsi,
+		zm.shiji_gongjijin_gongsi,
+		zm.shiji_gongjijin_geren,
+		zm.shiji_qita_gongsi,
+		zm.shiji_qita_geren,
+		zm.shiji_canbaojin_gongsi,
+		zm.shiji_fuwufei
+		FROM
+		zaice zc,zhangdan_mingxi
+		zm
+		WHERE
+		zc.zc_id = zm.zaice_id
+		AND
+		zc.reporting_period = #{yearMonth}
+		AND
+		zc.supplier_id = #{supplierId}
+	</select>
+    <!-- 客户账单明细 -->
+    <select id="customerZhangdanMingxi" resultMap="zhangdanMingxiPo">
+		SELECT
+		zm.zd_id,
+		zc.customer_id,
+		zc.supplier_id,
+		zm.zaice_id,
+		zc.employee_name,
+		zc.city,
+		zm.yuqi_yanglao_gongsi,
+		zm.yuqi_yanglao_geren,
+		zm.yuqi_jiben_yiliao_gongsi,
+		zm.yuqi_jiben_yiliao_geren,
+		zm.yuqi_dabing_yiliao_gongsi,
+		zm.yuqi_dabing_yiliao_geren,
+		zm.yuqi_shiye_gongsi,
+		zm.yuqi_shiye_geren,
+		zm.yuqi_gongshang_gongsi,
+		zm.yuqi_shengyu_gongsi,
+		zm.yuqi_gongjijin_gongsi,
+		zm.yuqi_gongjijin_geren,
+		zm.yuqi_qita_gongsi,
+		zm.yuqi_qita_geren,
+		zm.yuqi_canbaojin_gongsi,
+		zm.yuqi_fuwufei,
+		zm.shiji_yanglao_gongsi,
+		zm.shiji_yanglao_geren,
+		zm.shiji_jiben_yiliao_gongsi,
+		zm.shiji_jiben_yiliao_geren,
+		zm.shiji_dabing_yiliao_gongsi,
+		zm.shiji_dabing_yiliao_geren,
+		zm.shiji_shiye_gongsi,
+		zm.shiji_shiye_geren,
+		zm.shiji_gongshang_gongsi,
+		zm.shiji_shengyu_gongsi,
+		zm.shiji_gongjijin_gongsi,
+		zm.shiji_gongjijin_geren,
+		zm.shiji_qita_gongsi,
+		zm.shiji_qita_geren,
+		zm.shiji_canbaojin_gongsi,
+		zm.shiji_fuwufei
+		FROM
+		zaice zc,zhangdan_mingxi
+		zm
+		WHERE
+		zc.zc_id = zm.zaice_id
+		AND
+		zc.reporting_period = #{yearMonth}
+		AND
+		zc.customer_id = #{customerId}
+	</select>
+
+
+    <update id="updateZhangdanByZaiceId">
+		update
+		zhangdan_mingxi set
+		shiji_yanglao_gongsi=#{shijiYanglaoGongsi},
+		shiji_yanglao_geren=#{shijiYanglaoGeren},
+		shiji_jiben_yiliao_gongsi=#{shijiJibenYiliaoGongsi},
+		shiji_jiben_yiliao_geren=#{shijiJibenYiliaoGeren},
+		shiji_shiye_gongsi=#{shijiShiyeGongsi},
+		shiji_shiye_geren=#{shijiShiyeGeren},
+		shiji_gongshang_gongsi=#{shijiGongshangGongsi},
+		shiji_shengyu_gongsi=#{shijiShengyuGongsi}
+		where
+		zaice_id=#{zaiceId}
+	</update>
+
+    <!-- 更新账单明细信息 -->
+    <update id="updateByEmployeeInfo" parameterType="zhangdanMingxi">
+		update
+		zhangdan_mingxi
+		set yuqi_yanglao_gongsi =
+		#{yuqiYanglaoGongsi,jdbcType=DOUBLE},
+		yuqi_yanglao_geren =
+		#{yuqiYanglaoGeren,jdbcType=DOUBLE},
+		yuqi_jiben_yiliao_gongsi =
+		#{yuqiJibenYiliaoGongsi,jdbcType=DOUBLE},
+		yuqi_jiben_yiliao_geren =
+		#{yuqiJibenYiliaoGeren,jdbcType=DOUBLE},
+		yuqi_dabing_yiliao_gongsi =
+		#{yuqiDabingYiliaoGongsi,jdbcType=DOUBLE},
+		yuqi_dabing_yiliao_geren =
+		#{yuqiDabingYiliaoGeren,jdbcType=DOUBLE},
+		yuqi_shiye_gongsi =
+		#{yuqiShiyeGongsi,jdbcType=DOUBLE},
+		yuqi_shiye_geren =
+		#{yuqiShiyeGeren,jdbcType=DOUBLE},
+		yuqi_gongshang_gongsi =
+		#{yuqiGongshangGongsi,jdbcType=DOUBLE},
+		yuqi_shengyu_gongsi =
+		#{yuqiShengyuGongsi,jdbcType=DOUBLE},
+		yuqi_gongjijin_gongsi =
+		#{yuqiGongjijinGongsi,jdbcType=DOUBLE},
+		yuqi_gongjijin_geren =
+		#{yuqiGongjijinGeren,jdbcType=DOUBLE},
+		yuqi_qita_gongsi =
+		#{yuqiQitaGongsi,jdbcType=DOUBLE},
+		yuqi_qita_geren =
+		#{yuqiQitaGeren,jdbcType=DOUBLE},
+		yuqi_canbaojin_gongsi =
+		#{yuqiCanbaojinGongsi,jdbcType=DOUBLE},
+		yuqi_fuwufei =
+		#{yuqiFuwufei,jdbcType=DOUBLE}
+		where zaice_id =
+		#{zaiceId,jdbcType=INTEGER}
+	</update>
+
+    <!-- 修改账单明细中实际公积金数据 -->
+    <update id="updateGongjijin">
+		update
+		zhangdan_mingxi
+		set
+		shiji_gongjijin_gongsi = #{gongjijinGongsi},
+		shiji_gongjijin_geren = #{gongjijinGeren}
+		where
+		zaice_id = #{zaiceId}
+	</update>
+
+
+</mapper>

@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dianmi.mapper.JianyuanYichangMapper">
+	<resultMap id="BaseResultMap" type="com.dianmi.model.JianyuanYichang">
+		<constructor>
+			<idArg column="yc_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+			<arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+			<arg column="dept_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+			<arg column="client_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="employee_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="certificate_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="certificate_number" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="city" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="dimission_reason" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="dimission_date" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="social_security_stop_date" jdbcType="VARCHAR"
+				javaType="java.lang.String" />
+			<arg column="accumulation_fund_stop_date" jdbcType="VARCHAR"
+				javaType="java.lang.String" />
+			<arg column="supplier" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="remark" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="import_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+			<arg column="reporting_period" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="check_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="yichang_reason" jdbcType="VARCHAR" javaType="java.lang.String" />
+		</constructor>
+	</resultMap>
+	<sql id="Base_Column_List">
+		yc_id, user_id,dept_id, client_name, employee_name, certificate_type,
+		certificate_number,
+		city, dimission_reason, dimission_date, social_security_stop_date,
+		accumulation_fund_stop_date,
+		supplier, remark, import_date, reporting_period, check_code, yichang_reason
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from jianyuan_yichang
+		where yc_id = #{ycId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from jianyuan_yichang
+		where yc_id = #{ycId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.dianmi.model.JianyuanYichang">
+		insert into jianyuan_yichang (yc_id, user_id,dept_id, client_name,
+		employee_name, certificate_type, certificate_number,
+		city, dimission_reason, dimission_date,
+		social_security_stop_date, accumulation_fund_stop_date,
+		supplier, remark, import_date,
+		reporting_period, check_code, yichang_reason
+		)
+		values (#{ycId,jdbcType=INTEGER},
+		#{userId,jdbcType=INTEGER},#{deptId,jdbcType=INTEGER},
+		#{clientName,jdbcType=VARCHAR},
+		#{employeeName,jdbcType=VARCHAR}, #{certificateType,jdbcType=VARCHAR},
+		#{certificateNumber,jdbcType=VARCHAR},
+		#{city,jdbcType=VARCHAR}, #{dimissionReason,jdbcType=VARCHAR},
+		#{dimissionDate,jdbcType=VARCHAR},
+		#{socialSecurityStopDate,jdbcType=VARCHAR},
+		#{accumulationFundStopDate,jdbcType=VARCHAR},
+		#{supplier,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+		#{importDate,jdbcType=TIMESTAMP},
+		#{reportingPeriod,jdbcType=VARCHAR}, #{checkCode,jdbcType=VARCHAR}, #{yichangReason,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.dianmi.model.JianyuanYichang">
+		insert into jianyuan_yichang
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="ycId != null">
+				yc_id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="deptId != null">
+				dept_id,
+			</if>
+			<if test="clientName != null">
+				client_name,
+			</if>
+			<if test="employeeName != null">
+				employee_name,
+			</if>
+			<if test="certificateType != null">
+				certificate_type,
+			</if>
+			<if test="certificateNumber != null">
+				certificate_number,
+			</if>
+			<if test="city != null">
+				city,
+			</if>
+			<if test="dimissionReason != null">
+				dimission_reason,
+			</if>
+			<if test="dimissionDate != null">
+				dimission_date,
+			</if>
+			<if test="socialSecurityStopDate != null">
+				social_security_stop_date,
+			</if>
+			<if test="accumulationFundStopDate != null">
+				accumulation_fund_stop_date,
+			</if>
+			<if test="supplier != null">
+				supplier,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="importDate != null">
+				import_date,
+			</if>
+			<if test="reportingPeriod != null">
+				reporting_period,
+			</if>
+			<if test="checkCode != null">
+				check_code,
+			</if>
+			<if test="yichangReason != null">
+				yichang_reason,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="ycId != null">
+				#{ycId,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="deptId != null">
+				#{deptId,jdbcType=INTEGER},
+			</if>
+			<if test="clientName != null">
+				#{clientName,jdbcType=VARCHAR},
+			</if>
+			<if test="employeeName != null">
+				#{employeeName,jdbcType=VARCHAR},
+			</if>
+			<if test="certificateType != null">
+				#{certificateType,jdbcType=VARCHAR},
+			</if>
+			<if test="certificateNumber != null">
+				#{certificateNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				#{city,jdbcType=VARCHAR},
+			</if>
+			<if test="dimissionReason != null">
+				#{dimissionReason,jdbcType=VARCHAR},
+			</if>
+			<if test="dimissionDate != null">
+				#{dimissionDate,jdbcType=VARCHAR},
+			</if>
+			<if test="socialSecurityStopDate != null">
+				#{socialSecurityStopDate,jdbcType=VARCHAR},
+			</if>
+			<if test="accumulationFundStopDate != null">
+				#{accumulationFundStopDate,jdbcType=VARCHAR},
+			</if>
+			<if test="supplier != null">
+				#{supplier,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="importDate != null">
+				#{importDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="reportingPeriod != null">
+				#{reportingPeriod,jdbcType=VARCHAR},
+			</if>
+			<if test="checkCode != null">
+				#{checkCode,jdbcType=VARCHAR},
+			</if>
+			<if test="yichangReason != null">
+				#{yichangReason,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.dianmi.model.JianyuanYichang">
+		update jianyuan_yichang
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="deptId != null">
+				dept_id = #{deptId,jdbcType=INTEGER},
+			</if>
+			<if test="clientName != null">
+				client_name = #{clientName,jdbcType=VARCHAR},
+			</if>
+			<if test="employeeName != null">
+				employee_name = #{employeeName,jdbcType=VARCHAR},
+			</if>
+			<if test="certificateType != null">
+				certificate_type = #{certificateType,jdbcType=VARCHAR},
+			</if>
+			<if test="certificateNumber != null">
+				certificate_number = #{certificateNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				city = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="dimissionReason != null">
+				dimission_reason = #{dimissionReason,jdbcType=VARCHAR},
+			</if>
+			<if test="dimissionDate != null">
+				dimission_date = #{dimissionDate,jdbcType=VARCHAR},
+			</if>
+			<if test="socialSecurityStopDate != null">
+				social_security_stop_date =
+				#{socialSecurityStopDate,jdbcType=VARCHAR},
+			</if>
+			<if test="accumulationFundStopDate != null">
+				accumulation_fund_stop_date =
+				#{accumulationFundStopDate,jdbcType=VARCHAR},
+			</if>
+			<if test="supplier != null">
+				supplier = #{supplier,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="importDate != null">
+				import_date = #{importDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="reportingPeriod != null">
+				reporting_period = #{reportingPeriod,jdbcType=VARCHAR},
+			</if>
+			<if test="checkCode != null">
+				check_code = #{checkCode,jdbcType=VARCHAR},
+			</if>
+			<if test="yichangReason != null">
+				yichang_reason = #{yichangReason,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where yc_id = #{ycId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.dianmi.model.JianyuanYichang">
+		update jianyuan_yichang
+		set user_id = #{userId,jdbcType=INTEGER},
+		dept_id = #{deptId,jdbcType=INTEGER},
+		client_name = #{clientName,jdbcType=VARCHAR},
+		employee_name = #{employeeName,jdbcType=VARCHAR},
+		certificate_type = #{certificateType,jdbcType=VARCHAR},
+		certificate_number = #{certificateNumber,jdbcType=VARCHAR},
+		city = #{city,jdbcType=VARCHAR},
+		dimission_reason = #{dimissionReason,jdbcType=VARCHAR},
+		dimission_date = #{dimissionDate,jdbcType=VARCHAR},
+		social_security_stop_date = #{socialSecurityStopDate,jdbcType=VARCHAR},
+		accumulation_fund_stop_date =
+		#{accumulationFundStopDate,jdbcType=VARCHAR},
+		supplier = #{supplier,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		import_date = #{importDate,jdbcType=TIMESTAMP},
+		reporting_period = #{reportingPeriod,jdbcType=VARCHAR},
+		check_code = #{checkCode,jdbcType=VARCHAR},
+		yichang_reason = #{yichangReason,jdbcType=VARCHAR}
+		where yc_id = #{ycId,jdbcType=INTEGER}
+	</update>
+
+	<!-- 获取当前操作者某月份的增减员异常数据 -->
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		*
+		from
+		jianyuan_yichang
+		where
+		reporting_period = #{yearMonth}
+		and
+		user_id = #{userId}
+		and
+		import_date = #{importDate}
+		<if test="importDate != null">
+		and
+		import_date = #{importDate}
+		</if>
+	</select>
+
+	<!-- 根据检验码删除所有增员异常信息 -->
+	<delete id="deleteByCheckCode" parameterType="string">
+		delete
+		from
+		jianyuan_yichang
+		where
+		check_code = #{checkCode}
+	</delete>
+	
+	<!-- 批次导入时间 -->
+	<select id="allImportDateTime" resultType="map">
+		SELECT
+		DISTINCT
+		import_date
+		FROM
+		jianyuan_yichang
+		WHERE
+		reporting_period = #{yearMonth}
+		AND
+		user_id = #{userId}
+	</select>
+</mapper>

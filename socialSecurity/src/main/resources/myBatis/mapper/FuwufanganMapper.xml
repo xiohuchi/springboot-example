@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dianmi.mapper.FuwufanganMapper">
+  <resultMap id="BaseResultMap" type="com.dianmi.model.Fuwufangan">
+    <constructor>
+      <idArg column="fw_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="type" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="city_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="supplier_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="customer_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="product_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="household_property" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="social_security_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="implement_date" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="social_security_min_base" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="pension_company_pay" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="pension_person_pay" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="medical_company_pay" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="medical_person_pay" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="unemployment_company_pay" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="unemployment_person_pay" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="serious_illness_company_pay" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="serious_illness_person_pay" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="procreate_company_pay" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="injury_company_pay" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="accumulation_fund_company_pay" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="accumulation_fund_person_pay" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="other_company_pay" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="other_person_pay" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="service_charge" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="disability_guarantee_fund" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="version" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    fw_id, type, city_id, supplier_id, customer_id, product_name, household_property, 
+    social_security_type, implement_date, social_security_min_base, pension_company_pay, 
+    pension_person_pay, medical_company_pay, medical_person_pay, unemployment_company_pay, 
+    unemployment_person_pay, serious_illness_company_pay, serious_illness_person_pay, 
+    procreate_company_pay, injury_company_pay, accumulation_fund_company_pay, accumulation_fund_person_pay, 
+    other_company_pay, other_person_pay, service_charge, disability_guarantee_fund, version
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fuwufangan
+    where fw_id = #{fwId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from fuwufangan
+    where fw_id = #{fwId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dianmi.model.Fuwufangan">
+    insert into fuwufangan (fw_id, type, city_id, 
+      supplier_id, customer_id, product_name, 
+      household_property, social_security_type, 
+      implement_date, social_security_min_base, pension_company_pay, 
+      pension_person_pay, medical_company_pay, medical_person_pay, 
+      unemployment_company_pay, unemployment_person_pay, 
+      serious_illness_company_pay, serious_illness_person_pay, 
+      procreate_company_pay, injury_company_pay, accumulation_fund_company_pay, 
+      accumulation_fund_person_pay, other_company_pay, 
+      other_person_pay, service_charge, disability_guarantee_fund, 
+      version)
+    values (#{fwId,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, #{cityId,jdbcType=VARCHAR}, 
+      #{supplierId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, 
+      #{householdProperty,jdbcType=VARCHAR}, #{socialSecurityType,jdbcType=VARCHAR}, 
+      #{implementDate,jdbcType=VARCHAR}, #{socialSecurityMinBase,jdbcType=DOUBLE}, #{pensionCompanyPay,jdbcType=DOUBLE}, 
+      #{pensionPersonPay,jdbcType=DOUBLE}, #{medicalCompanyPay,jdbcType=DOUBLE}, #{medicalPersonPay,jdbcType=DOUBLE}, 
+      #{unemploymentCompanyPay,jdbcType=DOUBLE}, #{unemploymentPersonPay,jdbcType=DOUBLE}, 
+      #{seriousIllnessCompanyPay,jdbcType=DOUBLE}, #{seriousIllnessPersonPay,jdbcType=DOUBLE}, 
+      #{procreateCompanyPay,jdbcType=DOUBLE}, #{injuryCompanyPay,jdbcType=DOUBLE}, #{accumulationFundCompanyPay,jdbcType=DOUBLE}, 
+      #{accumulationFundPersonPay,jdbcType=DOUBLE}, #{otherCompanyPay,jdbcType=DOUBLE}, 
+      #{otherPersonPay,jdbcType=DOUBLE}, #{serviceCharge,jdbcType=DOUBLE}, #{disabilityGuaranteeFund,jdbcType=DOUBLE}, 
+      #{version,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dianmi.model.Fuwufangan">
+    insert into fuwufangan
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fwId != null">
+        fw_id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="cityId != null">
+        city_id,
+      </if>
+      <if test="supplierId != null">
+        supplier_id,
+      </if>
+      <if test="customerId != null">
+        customer_id,
+      </if>
+      <if test="productName != null">
+        product_name,
+      </if>
+      <if test="householdProperty != null">
+        household_property,
+      </if>
+      <if test="socialSecurityType != null">
+        social_security_type,
+      </if>
+      <if test="implementDate != null">
+        implement_date,
+      </if>
+      <if test="socialSecurityMinBase != null">
+        social_security_min_base,
+      </if>
+      <if test="pensionCompanyPay != null">
+        pension_company_pay,
+      </if>
+      <if test="pensionPersonPay != null">
+        pension_person_pay,
+      </if>
+      <if test="medicalCompanyPay != null">
+        medical_company_pay,
+      </if>
+      <if test="medicalPersonPay != null">
+        medical_person_pay,
+      </if>
+      <if test="unemploymentCompanyPay != null">
+        unemployment_company_pay,
+      </if>
+      <if test="unemploymentPersonPay != null">
+        unemployment_person_pay,
+      </if>
+      <if test="seriousIllnessCompanyPay != null">
+        serious_illness_company_pay,
+      </if>
+      <if test="seriousIllnessPersonPay != null">
+        serious_illness_person_pay,
+      </if>
+      <if test="procreateCompanyPay != null">
+        procreate_company_pay,
+      </if>
+      <if test="injuryCompanyPay != null">
+        injury_company_pay,
+      </if>
+      <if test="accumulationFundCompanyPay != null">
+        accumulation_fund_company_pay,
+      </if>
+      <if test="accumulationFundPersonPay != null">
+        accumulation_fund_person_pay,
+      </if>
+      <if test="otherCompanyPay != null">
+        other_company_pay,
+      </if>
+      <if test="otherPersonPay != null">
+        other_person_pay,
+      </if>
+      <if test="serviceCharge != null">
+        service_charge,
+      </if>
+      <if test="disabilityGuaranteeFund != null">
+        disability_guarantee_fund,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fwId != null">
+        #{fwId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="cityId != null">
+        #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null">
+        #{supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="householdProperty != null">
+        #{householdProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="socialSecurityType != null">
+        #{socialSecurityType,jdbcType=VARCHAR},
+      </if>
+      <if test="implementDate != null">
+        #{implementDate,jdbcType=VARCHAR},
+      </if>
+      <if test="socialSecurityMinBase != null">
+        #{socialSecurityMinBase,jdbcType=DOUBLE},
+      </if>
+      <if test="pensionCompanyPay != null">
+        #{pensionCompanyPay,jdbcType=DOUBLE},
+      </if>
+      <if test="pensionPersonPay != null">
+        #{pensionPersonPay,jdbcType=DOUBLE},
+      </if>
+      <if test="medicalCompanyPay != null">
+        #{medicalCompanyPay,jdbcType=DOUBLE},
+      </if>
+      <if test="medicalPersonPay != null">
+        #{medicalPersonPay,jdbcType=DOUBLE},
+      </if>
+      <if test="unemploymentCompanyPay != null">
+        #{unemploymentCompanyPay,jdbcType=DOUBLE},
+      </if>
+      <if test="unemploymentPersonPay != null">
+        #{unemploymentPersonPay,jdbcType=DOUBLE},
+      </if>
+      <if test="seriousIllnessCompanyPay != null">
+        #{seriousIllnessCompanyPay,jdbcType=DOUBLE},
+      </if>
+      <if test="seriousIllnessPersonPay != null">
+        #{seriousIllnessPersonPay,jdbcType=DOUBLE},
+      </if>
+      <if test="procreateCompanyPay != null">
+        #{procreateCompanyPay,jdbcType=DOUBLE},
+      </if>
+      <if test="injuryCompanyPay != null">
+        #{injuryCompanyPay,jdbcType=DOUBLE},
+      </if>
+      <if test="accumulationFundCompanyPay != null">
+        #{accumulationFundCompanyPay,jdbcType=DOUBLE},
+      </if>
+      <if test="accumulationFundPersonPay != null">
+        #{accumulationFundPersonPay,jdbcType=DOUBLE},
+      </if>
+      <if test="otherCompanyPay != null">
+        #{otherCompanyPay,jdbcType=DOUBLE},
+      </if>
+      <if test="otherPersonPay != null">
+        #{otherPersonPay,jdbcType=DOUBLE},
+      </if>
+      <if test="serviceCharge != null">
+        #{serviceCharge,jdbcType=DOUBLE},
+      </if>
+      <if test="disabilityGuaranteeFund != null">
+        #{disabilityGuaranteeFund,jdbcType=DOUBLE},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dianmi.model.Fuwufangan">
+    update fuwufangan
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="cityId != null">
+        city_id = #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierId != null">
+        supplier_id = #{supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null">
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="householdProperty != null">
+        household_property = #{householdProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="socialSecurityType != null">
+        social_security_type = #{socialSecurityType,jdbcType=VARCHAR},
+      </if>
+      <if test="implementDate != null">
+        implement_date = #{implementDate,jdbcType=VARCHAR},
+      </if>
+      <if test="socialSecurityMinBase != null">
+        social_security_min_base = #{socialSecurityMinBase,jdbcType=DOUBLE},
+      </if>
+      <if test="pensionCompanyPay != null">
+        pension_company_pay = #{pensionCompanyPay,jdbcType=DOUBLE},
+      </if>
+      <if test="pensionPersonPay != null">
+        pension_person_pay = #{pensionPersonPay,jdbcType=DOUBLE},
+      </if>
+      <if test="medicalCompanyPay != null">
+        medical_company_pay = #{medicalCompanyPay,jdbcType=DOUBLE},
+      </if>
+      <if test="medicalPersonPay != null">
+        medical_person_pay = #{medicalPersonPay,jdbcType=DOUBLE},
+      </if>
+      <if test="unemploymentCompanyPay != null">
+        unemployment_company_pay = #{unemploymentCompanyPay,jdbcType=DOUBLE},
+      </if>
+      <if test="unemploymentPersonPay != null">
+        unemployment_person_pay = #{unemploymentPersonPay,jdbcType=DOUBLE},
+      </if>
+      <if test="seriousIllnessCompanyPay != null">
+        serious_illness_company_pay = #{seriousIllnessCompanyPay,jdbcType=DOUBLE},
+      </if>
+      <if test="seriousIllnessPersonPay != null">
+        serious_illness_person_pay = #{seriousIllnessPersonPay,jdbcType=DOUBLE},
+      </if>
+      <if test="procreateCompanyPay != null">
+        procreate_company_pay = #{procreateCompanyPay,jdbcType=DOUBLE},
+      </if>
+      <if test="injuryCompanyPay != null">
+        injury_company_pay = #{injuryCompanyPay,jdbcType=DOUBLE},
+      </if>
+      <if test="accumulationFundCompanyPay != null">
+        accumulation_fund_company_pay = #{accumulationFundCompanyPay,jdbcType=DOUBLE},
+      </if>
+      <if test="accumulationFundPersonPay != null">
+        accumulation_fund_person_pay = #{accumulationFundPersonPay,jdbcType=DOUBLE},
+      </if>
+      <if test="otherCompanyPay != null">
+        other_company_pay = #{otherCompanyPay,jdbcType=DOUBLE},
+      </if>
+      <if test="otherPersonPay != null">
+        other_person_pay = #{otherPersonPay,jdbcType=DOUBLE},
+      </if>
+      <if test="serviceCharge != null">
+        service_charge = #{serviceCharge,jdbcType=DOUBLE},
+      </if>
+      <if test="disabilityGuaranteeFund != null">
+        disability_guarantee_fund = #{disabilityGuaranteeFund,jdbcType=DOUBLE},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where fw_id = #{fwId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dianmi.model.Fuwufangan">
+    update fuwufangan
+    set type = #{type,jdbcType=TINYINT},
+      city_id = #{cityId,jdbcType=VARCHAR},
+      supplier_id = #{supplierId,jdbcType=INTEGER},
+      customer_id = #{customerId,jdbcType=INTEGER},
+      product_name = #{productName,jdbcType=VARCHAR},
+      household_property = #{householdProperty,jdbcType=VARCHAR},
+      social_security_type = #{socialSecurityType,jdbcType=VARCHAR},
+      implement_date = #{implementDate,jdbcType=VARCHAR},
+      social_security_min_base = #{socialSecurityMinBase,jdbcType=DOUBLE},
+      pension_company_pay = #{pensionCompanyPay,jdbcType=DOUBLE},
+      pension_person_pay = #{pensionPersonPay,jdbcType=DOUBLE},
+      medical_company_pay = #{medicalCompanyPay,jdbcType=DOUBLE},
+      medical_person_pay = #{medicalPersonPay,jdbcType=DOUBLE},
+      unemployment_company_pay = #{unemploymentCompanyPay,jdbcType=DOUBLE},
+      unemployment_person_pay = #{unemploymentPersonPay,jdbcType=DOUBLE},
+      serious_illness_company_pay = #{seriousIllnessCompanyPay,jdbcType=DOUBLE},
+      serious_illness_person_pay = #{seriousIllnessPersonPay,jdbcType=DOUBLE},
+      procreate_company_pay = #{procreateCompanyPay,jdbcType=DOUBLE},
+      injury_company_pay = #{injuryCompanyPay,jdbcType=DOUBLE},
+      accumulation_fund_company_pay = #{accumulationFundCompanyPay,jdbcType=DOUBLE},
+      accumulation_fund_person_pay = #{accumulationFundPersonPay,jdbcType=DOUBLE},
+      other_company_pay = #{otherCompanyPay,jdbcType=DOUBLE},
+      other_person_pay = #{otherPersonPay,jdbcType=DOUBLE},
+      service_charge = #{serviceCharge,jdbcType=DOUBLE},
+      disability_guarantee_fund = #{disabilityGuaranteeFund,jdbcType=DOUBLE},
+      version = #{version,jdbcType=VARCHAR}
+    where fw_id = #{fwId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectBySocialMsg" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from fuwufangan
+		where
+		city_id = #{city}
+		and
+		customer_id = #{customerId}
+		and
+		household_property like #{householdProperty}
+		and
+		social_security_type like #{socialSecurityType}
+	</select>
+
+
+	<select id="selectByCustomerMsg" resultType="int">
+		select
+		fw_id
+		from
+		fuwufangan
+		where city_id = #{city}
+		and customer_id = #{customerId}
+		and
+		supplier_id = #{supplierId}
+	</select>
+
+	<resultMap id="BasePoResultMap" type="fuwufanganPo">
+		<id column="fw_id" property="fwId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result column="city_id" property="cityId" jdbcType="VARCHAR"
+			javaType="java.lang.String" />
+		<result column="supplier_name" property="supplier" jdbcType="VARCHAR"
+			javaType="java.lang.String" />
+		<result column="customer_name" property="customer" jdbcType="VARCHAR"
+			javaType="java.lang.String" />
+		<result column="product_name" property="productName" jdbcType="VARCHAR"
+			javaType="java.lang.String" />
+		<result column="household_property" property="householdProperty"
+			jdbcType="VARCHAR" javaType="java.lang.String" />
+		<result column="social_security_type" property="socialSecurityType"
+			jdbcType="VARCHAR" javaType="java.lang.String" />
+		<result column="implement_date" property="implementDate"
+			jdbcType="VARCHAR" javaType="java.lang.String" />
+		<result column="social_security_min_base" property="socialSecurityMinBase"
+			jdbcType="DOUBLE" javaType="java.lang.Double" />
+		<result column="pension_company_pay" property="pensionCompanyPay"
+			jdbcType="DOUBLE" javaType="java.lang.Double" />
+		<result column="pension_person_pay" property="pensionPersonPay"
+			jdbcType="DOUBLE" javaType="java.lang.Double" />
+		<result column="medical_company_pay" property="medicalCompanyPay"
+			jdbcType="DOUBLE" javaType="java.lang.Double" />
+		<result column="medical_person_pay" property="medicalPersonPay"
+			jdbcType="DOUBLE" javaType="java.lang.Double" />
+		<result column="unemployment_company_pay" property="unemploymentCompanyPay"
+			jdbcType="DOUBLE" javaType="java.lang.Double" />
+		<result column="unemployment_person_pay" property="unemploymentPersonPay"
+			jdbcType="DOUBLE" javaType="java.lang.Double" />
+		<result column="serious_illness_company_pay" property="seriousIllnessCompanyPay"
+			jdbcType="DOUBLE" javaType="java.lang.Double" />
+		<result column="serious_illness_person_pay" property="seriousIllnessPersonPay"
+			jdbcType="DOUBLE" javaType="java.lang.Double" />
+		<result column="procreate_company_pay" property="otherCompanyPay"
+			jdbcType="DOUBLE" javaType="java.lang.Double" />
+		<result column="other_company_pay" property="otherCompanyPay"
+			jdbcType="DOUBLE" javaType="java.lang.Double" />
+		<result column="other_person_pay" property="otherPersonPay"
+			jdbcType="DOUBLE" javaType="java.lang.Double" />
+		<result column="injury_company_pay" property="injuryCompanyPay"
+			jdbcType="DOUBLE" javaType="java.lang.Double" />
+		<result column="service_charge" property="serviceCharge"
+			jdbcType="DOUBLE" javaType="java.lang.Double" />
+		<result column="disability_guarantee_fund" property="disabilityGuaranteeFund"
+			jdbcType="DOUBLE" javaType="java.lang.Double" />
+		<result column="version" property="version" jdbcType="VARCHAR"
+			javaType="java.lang.String" />
+	</resultMap>
+
+	<select id="selectAll" resultMap="BasePoResultMap">
+		select
+		fw.fw_id,
+		s.supplier_name,
+		c.customer_name,
+		fw.city_id,
+		fw.product_name,
+		fw.household_property,
+		fw.social_security_type,
+		fw.implement_date,
+		fw.social_security_min_base,
+		fw.pension_company_pay,
+		fw.pension_person_pay,
+		fw.medical_company_pay, fw.medical_person_pay,
+		fw.unemployment_company_pay,
+		fw.unemployment_person_pay,
+		fw.serious_illness_company_pay,
+		fw.serious_illness_person_pay,
+		fw.procreate_company_pay,fw.other_company_pay,
+		fw.other_person_pay,
+		fw.injury_company_pay,
+		fw.service_charge,
+		fw.disability_guarantee_fund,
+		fw.version
+		from
+		fuwufangan fw,customer c,supplier s
+		where
+		fw.supplier_id =
+		s.s_id
+		and
+		fw.customer_id = c.c_id
+		and
+		fw.city_id like #{city}
+	</select>
+
+	<select id="getSupplier" resultType="map">
+		select
+		fw.fw_id,
+		fw.supplier_id,
+		s.supplier_name,
+		fw.customer_id,
+		c.customer_name,
+		fw.city_id city,
+		fw.product_name,
+		fw.household_property,
+		fw.social_security_type
+		from
+		fuwufangan fw,supplier s,customer c
+		where
+		fw.supplier_id = s.s_id
+		and
+		fw.customer_id = c.c_id
+		and
+		fw.supplier_id
+		in(select s_id from supplier where user_id = #{userId}
+		or user_id is
+		NULL)
+	</select>
+	
+</mapper>

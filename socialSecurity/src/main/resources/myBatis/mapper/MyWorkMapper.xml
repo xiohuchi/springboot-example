@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--suppress ALL -->
+<mapper namespace="com.dianmi.mapper.MyWorkMapper">
+    <select id="addAndDelStaff" resultType="map" parameterType="java.lang.Integer">
+        -- 增减员总数统计
+        SELECT
+        z.status status,
+        COUNT(zc_id) addAndDelNum
+        FROM zaice z
+        WHERE STATUS=1
+        AND reporting_period=#{yearMonth}
+        AND z.delete_flag=0
+        <if test="roleType == 2">
+            and z.supplier_id in (select s.s_id from supplier s where s.user_id=#{userId})
+        </if>
+        group by
+        z.status
+    </select>
+
+    <select id="suppliersAndPrivate" resultType="map">
+        -- 自有户和供应商信息统计
+        select
+        count(distinct s.s_id),
+        count(distinct sc.city),
+        count(distinct sc.customer_name)
+        from
+        supplier_cost sc,
+        supplier s
+        where s.s_id=sc.supplier_id
+        and sc.reporting_period=#{yearMonth}
+        <if test="roleType == 2">
+            and sc.user_id=#{userId}
+        </if>
+    </select>
+    
+    <select id="suppliersCompleted" resultType="map">
+        -- 供应商已处理
+
+    </select>
+    
+    <select id="suppliersToCompleted" resultType="map">
+        -- 供应商待处理
+    </select>
+
+
+    <select id="privateCompleted" resultType="map">
+        -- 自有户已处理
+    </select>
+
+    <select id="privateToCompleted" resultType="map">
+        -- 自有户待处理
+    </select>
+
+
+
+
+
+    <!-- 我的工作台社保在册信息 -->
+    <select id="zaiceMsg" resultType="map">
+        select
+        (
+        select
+        count(zc_id)
+        from
+        zaice
+        where
+        reporting_period = #{yearMonth}
+        and
+        zaice_flag = 1
+        and
+        delete_flag = 0
+        <if test="roleType == 2">
+            and
+            supplier_id in (select s_id from supplier where user_id
+            = #{userId})
+        </if>
+        ) shijiZaiceTotal,-- 实际在册总人数
+
+        (
+        select
+        count(zc_id)
+        from
+        zaice
+        where
+        reporting_period = #{yearMonth}
+        and
+        delete_flag = 0
+        <if test="roleType == 2">
+            and
+            supplier_id in (select s_id from supplier where user_id
+            = #{userId})
+        </if>
+        ) mubiaoZaiceTotal, -- 本月目标在册总人数
+
+        (
+        select
+        count(zc_id)
+        from
+        zaice
+        where
+        reporting_period = #{yearMonth}
+        and
+        status = 1
+        and
+        delete_flag = 0
+        <if test="roleType == 2">
+            and
+            supplier_id in (select s_id from supplier where user_id
+            = #{userId})
+        </if>
+        ) mubiaoZaiceZengyuanTotal, -- 目标在册增员人数
+
+        (
+        select
+        count(zc_id)
+        from
+        zaice
+        where
+        reporting_period = #{yearMonth}
+        and
+        status = 2
+        and
+        delete_flag = 0
+        <if test="roleType == 2">
+            and
+            supplier_id in (select s_id from supplier where user_id
+            = #{userId})
+        </if>
+        ) mubiaoZaiceJianyuanTotal, -- 目标在册减员人数
+
+        (
+        select
+        count(zc_id)
+        from
+        zaice
+        where
+        reporting_period = #{yearMonth}
+        and
+        status = 1
+        and
+        delete_flag = 0
+        <if test="roleType == 2">
+            and
+            supplier_id in (select s_id from supplier where user_id
+            = #{userId})
+        </if>
+        ) zengyuanTotal, -- 增员总数
+
+        (
+        select
+        count(zc_id)
+        from
+        zaice
+        where
+        reporting_period = #{yearMonth}
+        and
+        status = 2
+        and
+        delete_flag = 0
+        <if test="roleType == 2">
+            and
+            supplier_id in (select s_id from supplier where user_id
+            = #{userId})
+        </if>
+        ) jianyuanTotal, -- 减员总数
+
+        (
+        select
+        count(zc_id)
+        from
+        zaice
+        where
+        reporting_period = #{yearMonth}
+        and
+        delete_flag = 0
+        <if test="roleType == 2">
+            and
+            supplier_id in (select s_id from supplier where user_id
+            = #{userId})
+        </if>
+        ) zengyuanDaidingTotal -- 实际增减员结果：增员待定人数
+
+    </select>
+
+</mapper>

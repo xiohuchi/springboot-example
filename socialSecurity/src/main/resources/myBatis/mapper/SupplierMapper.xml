@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dianmi.mapper.SupplierMapper">
+	<resultMap id="BaseResultMap" type="supplier">
+		<constructor>
+			<idArg column="s_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+			<arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+			<arg column="type" jdbcType="TINYINT" javaType="java.lang.Byte" />
+			<arg column="manager" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="province" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="city" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="canbao_type" jdbcType="TINYINT" javaType="java.lang.Byte" />
+			<arg column="is_cooperation" jdbcType="TINYINT" javaType="java.lang.Byte" />
+			<arg column="supplier_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="supplier_contacts" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="supplier_phone" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="supplier_email" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="supplier_docking_people" jdbcType="VARCHAR"
+				javaType="java.lang.String" />
+			<arg column="supplier_docking_people_phone" jdbcType="VARCHAR"
+				javaType="java.lang.String" />
+			<arg column="supplier_docking_people_email" jdbcType="VARCHAR"
+				javaType="java.lang.String" />
+			<arg column="supplier_docking_people_qq" jdbcType="VARCHAR"
+				javaType="java.lang.String" />
+			<arg column="service_charge" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="payment_time" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="contract_begin_time" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="contract_end_time" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="supplier_account_bank_name" jdbcType="VARCHAR"
+				javaType="java.lang.String" />
+			<arg column="supplier_account_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="supplier_bank_account" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="supplier_company_address" jdbcType="VARCHAR"
+				javaType="java.lang.String" />
+			<arg column="agreement_payment_method" jdbcType="VARCHAR"
+				javaType="java.lang.String" />
+			<arg column="remark" jdbcType="VARCHAR" javaType="java.lang.String" />
+			<arg column="active_time" jdbcType="DATE" javaType="java.util.Date" />
+		</constructor>
+	</resultMap>
+	<sql id="Base_Column_List">
+		s_id, user_id,type,manager, province, city, canbao_type,
+		is_cooperation,
+		supplier_name,
+		supplier_contacts, supplier_phone,
+		supplier_email, supplier_docking_people,
+		supplier_docking_people_phone,
+		supplier_docking_people_email,
+		supplier_docking_people_qq, service_charge, payment_time,
+		contract_begin_time, contract_end_time, supplier_account_bank_name,
+		supplier_account_name,
+		supplier_bank_account, supplier_company_address,
+		agreement_payment_method, remark,
+		active_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from supplier
+		where s_id = #{sId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		supplier
+		where s_id = #{sId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="supplier">
+		insert into supplier (s_id,
+		user_id, manager,
+		province, city, canbao_type,
+		is_cooperation,
+		supplier_name, supplier_contacts,
+		supplier_phone, supplier_email,
+		supplier_docking_people,
+		supplier_docking_people_phone,
+		supplier_docking_people_email,
+		supplier_docking_people_qq,
+		service_charge,
+		payment_time, contract_begin_time, contract_end_time,
+		supplier_account_bank_name, supplier_account_name,
+		supplier_bank_account, supplier_company_address,
+		agreement_payment_method, remark, active_time
+		)
+		values
+		(#{sId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
+		#{manager,jdbcType=VARCHAR},
+		#{province,jdbcType=VARCHAR},
+		#{city,jdbcType=VARCHAR}, #{canbaoType,jdbcType=TINYINT},
+		#{isCooperation,jdbcType=TINYINT}, #{supplierName,jdbcType=VARCHAR},
+		#{supplierContacts,jdbcType=VARCHAR},
+		#{supplierPhone,jdbcType=VARCHAR}, #{supplierEmail,jdbcType=VARCHAR},
+		#{supplierDockingPeople,jdbcType=VARCHAR},
+		#{supplierDockingPeoplePhone,jdbcType=VARCHAR},
+		#{supplierDockingPeopleEmail,jdbcType=VARCHAR},
+		#{supplierDockingPeopleQq,jdbcType=VARCHAR},
+		#{serviceCharge,jdbcType=VARCHAR},
+		#{paymentTime,jdbcType=VARCHAR},
+		#{contractBeginTime,jdbcType=VARCHAR},
+		#{contractEndTime,jdbcType=VARCHAR},
+		#{supplierAccountBankName,jdbcType=VARCHAR},
+		#{supplierAccountName,jdbcType=VARCHAR},
+		#{supplierBankAccount,jdbcType=VARCHAR},
+		#{supplierCompanyAddress,jdbcType=VARCHAR},
+		#{agreementPaymentMethod,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR}, #{activeTime,jdbcType=DATE}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="supplier">
+		insert into supplier
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="sId != null">
+				s_id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="manager != null">
+				manager,
+			</if>
+			<if test="province != null">
+				province,
+			</if>
+			<if test="city != null">
+				city,
+			</if>
+			<if test="canbaoType != null">
+				canbao_type,
+			</if>
+			<if test="isCooperation != null">
+				is_cooperation,
+			</if>
+			<if test="supplierName != null">
+				supplier_name,
+			</if>
+			<if test="supplierContacts != null">
+				supplier_contacts,
+			</if>
+			<if test="supplierPhone != null">
+				supplier_phone,
+			</if>
+			<if test="supplierEmail != null">
+				supplier_email,
+			</if>
+			<if test="supplierDockingPeople != null">
+				supplier_docking_people,
+			</if>
+			<if test="supplierDockingPeoplePhone != null">
+				supplier_docking_people_phone,
+			</if>
+			<if test="supplierDockingPeopleEmail != null">
+				supplier_docking_people_email,
+			</if>
+			<if test="supplierDockingPeopleQq != null">
+				supplier_docking_people_qq,
+			</if>
+			<if test="serviceCharge != null">
+				service_charge,
+			</if>
+			<if test="paymentTime != null">
+				payment_time,
+			</if>
+			<if test="contractBeginTime != null">
+				contract_begin_time,
+			</if>
+			<if test="contractEndTime != null">
+				contract_end_time,
+			</if>
+			<if test="supplierAccountBankName != null">
+				supplier_account_bank_name,
+			</if>
+			<if test="supplierAccountName != null">
+				supplier_account_name,
+			</if>
+			<if test="supplierBankAccount != null">
+				supplier_bank_account,
+			</if>
+			<if test="supplierCompanyAddress != null">
+				supplier_company_address,
+			</if>
+			<if test="agreementPaymentMethod != null">
+				agreement_payment_method,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="activeTime != null">
+				active_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="sId != null">
+				#{sId,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=TINYINT},
+			</if>
+			<if test="manager != null">
+				#{manager,jdbcType=VARCHAR},
+			</if>
+			<if test="province != null">
+				#{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				#{city,jdbcType=VARCHAR},
+			</if>
+			<if test="canbaoType != null">
+				#{canbaoType,jdbcType=TINYINT},
+			</if>
+			<if test="isCooperation != null">
+				#{isCooperation,jdbcType=TINYINT},
+			</if>
+			<if test="supplierName != null">
+				#{supplierName,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierContacts != null">
+				#{supplierContacts,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierPhone != null">
+				#{supplierPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierEmail != null">
+				#{supplierEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierDockingPeople != null">
+				#{supplierDockingPeople,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierDockingPeoplePhone != null">
+				#{supplierDockingPeoplePhone,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierDockingPeopleEmail != null">
+				#{supplierDockingPeopleEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierDockingPeopleQq != null">
+				#{supplierDockingPeopleQq,jdbcType=VARCHAR},
+			</if>
+			<if test="serviceCharge != null">
+				#{serviceCharge,jdbcType=VARCHAR},
+			</if>
+			<if test="paymentTime != null">
+				#{paymentTime,jdbcType=VARCHAR},
+			</if>
+			<if test="contractBeginTime != null">
+				#{contractBeginTime,jdbcType=VARCHAR},
+			</if>
+			<if test="contractEndTime != null">
+				#{contractEndTime,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierAccountBankName != null">
+				#{supplierAccountBankName,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierAccountName != null">
+				#{supplierAccountName,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierBankAccount != null">
+				#{supplierBankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierCompanyAddress != null">
+				#{supplierCompanyAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="agreementPaymentMethod != null">
+				#{agreementPaymentMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="activeTime != null">
+				#{activeTime,jdbcType=DATE},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="supplier">
+		update supplier
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=TINYINT},
+			</if>
+			<if test="manager != null">
+				manager = #{manager,jdbcType=VARCHAR},
+			</if>
+			<if test="province != null">
+				province = #{province,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				city = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="canbaoType != null">
+				canbao_type = #{canbaoType,jdbcType=TINYINT},
+			</if>
+			<if test="isCooperation != null">
+				is_cooperation = #{isCooperation,jdbcType=TINYINT},
+			</if>
+			<if test="supplierName != null">
+				supplier_name = #{supplierName,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierContacts != null">
+				supplier_contacts = #{supplierContacts,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierPhone != null">
+				supplier_phone = #{supplierPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierEmail != null">
+				supplier_email = #{supplierEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierDockingPeople != null">
+				supplier_docking_people =
+				#{supplierDockingPeople,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierDockingPeoplePhone != null">
+				supplier_docking_people_phone =
+				#{supplierDockingPeoplePhone,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierDockingPeopleEmail != null">
+				supplier_docking_people_email =
+				#{supplierDockingPeopleEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierDockingPeopleQq != null">
+				supplier_docking_people_qq =
+				#{supplierDockingPeopleQq,jdbcType=VARCHAR},
+			</if>
+			<if test="serviceCharge != null">
+				service_charge = #{serviceCharge,jdbcType=VARCHAR},
+			</if>
+			<if test="paymentTime != null">
+				payment_time = #{paymentTime,jdbcType=VARCHAR},
+			</if>
+			<if test="contractBeginTime != null">
+				contract_begin_time =
+				#{contractBeginTime,jdbcType=VARCHAR},
+			</if>
+			<if test="contractEndTime != null">
+				contract_end_time = #{contractEndTime,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierAccountBankName != null">
+				supplier_account_bank_name =
+				#{supplierAccountBankName,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierAccountName != null">
+				supplier_account_name =
+				#{supplierAccountName,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierBankAccount != null">
+				supplier_bank_account =
+				#{supplierBankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="supplierCompanyAddress != null">
+				supplier_company_address =
+				#{supplierCompanyAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="agreementPaymentMethod != null">
+				agreement_payment_method =
+				#{agreementPaymentMethod,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="activeTime != null">
+				active_time = #{activeTime,jdbcType=DATE},
+			</if>
+		</set>
+		where s_id = #{sId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="supplier">
+		update supplier
+		set user_id = #{userId,jdbcType=INTEGER},
+		type =
+		#{type,jdbcType=TINYINT},
+		manager =
+		#{manager,jdbcType=VARCHAR},
+		province = #{province,jdbcType=VARCHAR},
+		city =
+		#{city,jdbcType=VARCHAR},
+		canbao_type =
+		#{canbaoType,jdbcType=TINYINT},
+		is_cooperation =
+		#{isCooperation,jdbcType=TINYINT},
+		supplier_name =
+		#{supplierName,jdbcType=VARCHAR},
+		supplier_contacts =
+		#{supplierContacts,jdbcType=VARCHAR},
+		supplier_phone =
+		#{supplierPhone,jdbcType=VARCHAR},
+		supplier_email =
+		#{supplierEmail,jdbcType=VARCHAR},
+		supplier_docking_people =
+		#{supplierDockingPeople,jdbcType=VARCHAR},
+		supplier_docking_people_phone =
+		#{supplierDockingPeoplePhone,jdbcType=VARCHAR},
+		supplier_docking_people_email =
+		#{supplierDockingPeopleEmail,jdbcType=VARCHAR},
+		supplier_docking_people_qq =
+		#{supplierDockingPeopleQq,jdbcType=VARCHAR},
+		service_charge =
+		#{serviceCharge,jdbcType=VARCHAR},
+		payment_time =
+		#{paymentTime,jdbcType=VARCHAR},
+		contract_begin_time =
+		#{contractBeginTime,jdbcType=VARCHAR},
+		contract_end_time =
+		#{contractEndTime,jdbcType=VARCHAR},
+		supplier_account_bank_name =
+		#{supplierAccountBankName,jdbcType=VARCHAR},
+		supplier_account_name =
+		#{supplierAccountName,jdbcType=VARCHAR},
+		supplier_bank_account =
+		#{supplierBankAccount,jdbcType=VARCHAR},
+		supplier_company_address =
+		#{supplierCompanyAddress,jdbcType=VARCHAR},
+		agreement_payment_method =
+		#{agreementPaymentMethod,jdbcType=VARCHAR},
+		remark =
+		#{remark,jdbcType=VARCHAR},
+		active_time = #{activeTime,jdbcType=DATE}
+		where s_id = #{sId,jdbcType=INTEGER}
+	</update>
+
+	<select id="selectSupplierByUserId" resultType="int">
+		select s_id from
+		supplier where user_id = #{userId}
+	</select>
+
+	<select id="selectBySupplierMsg" resultType="int">
+		select
+		s_id
+		from
+		supplier
+		where
+		city like #{city}
+		and
+		supplier_name like #{supplierName}
+	</select>
+
+	<select id="selectSuppliers" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from supplier
+		where supplier_name like #{supplierName}
+		<if test="roleType == 2">
+			and user_id = #{userId}
+		</if>
+	</select>
+
+	<select id="selectByCity" resultType="map">
+		select
+		s_id,
+		supplier_name
+		from
+		supplier
+		where
+		city like #{city}
+	</select>
+
+
+	<select id="pageList" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from supplier
+		WHERE 1=1
+		<if test="userId != null">
+			AND user_id = #{userId, jdbcType=INTEGER}
+		</if>
+	</select>
+
+	<select id="ziyouhuSupplier" resultType="map">
+		select
+		s_id,
+		supplier_name
+		from
+		supplier
+		where
+		type = 1
+	</select>
+	
+	<select id="selectBySupplierId" resultType="string">
+	     SELECT
+	     supplier_name 
+	     FROM
+	     supplier
+	     WHERE
+	     s_id = #{supplierId}
+	</select>
+
+
+</mapper>

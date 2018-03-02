@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dianmi.mapper.SupplierCostMapper">
+    <resultMap id="BaseResultMap" type="com.dianmi.model.SupplierCost">
+        <constructor>
+            <idArg column="sc_id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="supplier_id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="reporting_period" javaType="java.lang.String"
+                 jdbcType="VARCHAR"/>
+            <arg column="employee_name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="certificate_number" javaType="java.lang.String"
+                 jdbcType="VARCHAR"/>
+            <arg column="social_security_number" javaType="java.lang.String"
+                 jdbcType="VARCHAR"/>
+            <arg column="accumulation_fund_number" javaType="java.lang.String"
+                 jdbcType="VARCHAR"/>
+            <arg column="city" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="resident_nature" javaType="java.lang.String"
+                 jdbcType="VARCHAR"/>
+            <arg column="social_security_begin_time" javaType="java.lang.String"
+                 jdbcType="VARCHAR"/>
+            <arg column="payment_month" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="social_security_cardinal_radix" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="pension_company_radix" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="pension_company_pay" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="pension_person_radix" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="pension_person_pay" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="unemployment_company_radix" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="unemployment_company_pay" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="unemployment_person_radix" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="unemployment_person_pay" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="injury_company_radix" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="injury_company_pay" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="procreate_company_radix" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="procreate_company_pay" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="medical_treatment_company_radix" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="medical_treatment_company_pay" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="medical_treatment_person_radix" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="medical_treatment_person_pay" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="serious_illness_company_redix" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="serious_illness_company_pay" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="serious_illness_person_redix" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="serious_illness_person_pay" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="accumulation_fund_company_redix" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="accumulation_fund_company_ratio" javaType="java.lang.String"
+                 jdbcType="VARCHAR"/>
+            <arg column="accumulation_fund_company_pay" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="accumulation_fund_person_redix" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="accumulation_fund_person_ratio" javaType="java.lang.String"
+                 jdbcType="VARCHAR"/>
+            <arg column="accumulation_fund_person_pay" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="other_charges_company" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="other_charges_person" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="disability_benefit" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="service_charge" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="company_total" javaType="java.lang.Double" jdbcType="DOUBLE"/>
+            <arg column="person_total" javaType="java.lang.Double" jdbcType="DOUBLE"/>
+            <arg column="company_refund" javaType="java.lang.Double"
+                 jdbcType="DOUBLE"/>
+            <arg column="total" javaType="java.lang.Double" jdbcType="DOUBLE"/>
+            <arg column="remark" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="accounting_unit" javaType="java.lang.String"
+                 jdbcType="VARCHAR"/>
+            <arg column="customer_name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+            <arg column="supplier_name" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+		sc_id, user_id, supplier_id, reporting_period, employee_name,
+		certificate_number,
+		social_security_number, accumulation_fund_number, city, resident_nature,
+		social_security_begin_time,
+		payment_month, social_security_cardinal_radix, pension_company_radix,
+		pension_company_pay,
+		pension_person_radix, pension_person_pay, unemployment_company_radix,
+		unemployment_company_pay,
+		unemployment_person_radix, unemployment_person_pay, injury_company_radix, injury_company_pay,
+		procreate_company_radix, procreate_company_pay,
+		medical_treatment_company_radix,
+		medical_treatment_company_pay, medical_treatment_person_radix, medical_treatment_person_pay,
+		serious_illness_company_redix, serious_illness_company_pay,
+		serious_illness_person_redix,
+		serious_illness_person_pay, accumulation_fund_company_redix, accumulation_fund_company_ratio,
+		accumulation_fund_company_pay, accumulation_fund_person_redix,
+		accumulation_fund_person_ratio,
+		accumulation_fund_person_pay, other_charges_company, other_charges_person, disability_benefit,
+		service_charge, company_total, person_total, company_refund, total,
+		remark, accounting_unit,
+		customer_name, supplier_name
+	</sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from supplier_cost
+        where sc_id = #{scId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from supplier_cost
+		where sc_id = #{scId,jdbcType=INTEGER}
+	</delete>
+    <insert id="insert" parameterType="com.dianmi.model.SupplierCost">
+		insert into supplier_cost (sc_id, user_id, supplier_id,
+		reporting_period, employee_name, certificate_number,
+		social_security_number, accumulation_fund_number,
+		city, resident_nature, social_security_begin_time,
+		payment_month, social_security_cardinal_radix,
+		pension_company_radix, pension_company_pay, pension_person_radix,
+		pension_person_pay, unemployment_company_radix,
+		unemployment_company_pay, unemployment_person_radix,
+		unemployment_person_pay, injury_company_radix,
+		injury_company_pay, procreate_company_radix,
+		procreate_company_pay, medical_treatment_company_radix,
+		medical_treatment_company_pay, medical_treatment_person_radix,
+		medical_treatment_person_pay, serious_illness_company_redix,
+		serious_illness_company_pay, serious_illness_person_redix,
+		serious_illness_person_pay, accumulation_fund_company_redix,
+		accumulation_fund_company_ratio, accumulation_fund_company_pay,
+		accumulation_fund_person_redix, accumulation_fund_person_ratio,
+		accumulation_fund_person_pay, other_charges_company,
+		other_charges_person, disability_benefit, service_charge,
+		company_total, person_total, company_refund,
+		total, remark, accounting_unit,
+		customer_name, supplier_name)
+		values (#{scId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
+		#{supplierId,jdbcType=INTEGER},
+		#{reportingPeriod,jdbcType=VARCHAR}, #{employeeName,jdbcType=VARCHAR},
+		#{certificateNumber,jdbcType=VARCHAR},
+		#{socialSecurityNumber,jdbcType=VARCHAR},
+		#{accumulationFundNumber,jdbcType=VARCHAR},
+		#{city,jdbcType=VARCHAR}, #{residentNature,jdbcType=VARCHAR},
+		#{socialSecurityBeginTime,jdbcType=VARCHAR},
+		#{paymentMonth,jdbcType=VARCHAR},
+		#{socialSecurityCardinalRadix,jdbcType=DOUBLE},
+		#{pensionCompanyRadix,jdbcType=DOUBLE},
+		#{pensionCompanyPay,jdbcType=DOUBLE},
+		#{pensionPersonRadix,jdbcType=DOUBLE},
+		#{pensionPersonPay,jdbcType=DOUBLE},
+		#{unemploymentCompanyRadix,jdbcType=DOUBLE},
+		#{unemploymentCompanyPay,jdbcType=DOUBLE},
+		#{unemploymentPersonRadix,jdbcType=DOUBLE},
+		#{unemploymentPersonPay,jdbcType=DOUBLE},
+		#{injuryCompanyRadix,jdbcType=DOUBLE},
+		#{injuryCompanyPay,jdbcType=DOUBLE},
+		#{procreateCompanyRadix,jdbcType=DOUBLE},
+		#{procreateCompanyPay,jdbcType=DOUBLE},
+		#{medicalTreatmentCompanyRadix,jdbcType=DOUBLE},
+		#{medicalTreatmentCompanyPay,jdbcType=DOUBLE},
+		#{medicalTreatmentPersonRadix,jdbcType=DOUBLE},
+		#{medicalTreatmentPersonPay,jdbcType=DOUBLE},
+		#{seriousIllnessCompanyRedix,jdbcType=DOUBLE},
+		#{seriousIllnessCompanyPay,jdbcType=DOUBLE},
+		#{seriousIllnessPersonRedix,jdbcType=DOUBLE},
+		#{seriousIllnessPersonPay,jdbcType=DOUBLE},
+		#{accumulationFundCompanyRedix,jdbcType=DOUBLE},
+		#{accumulationFundCompanyRatio,jdbcType=VARCHAR},
+		#{accumulationFundCompanyPay,jdbcType=DOUBLE},
+		#{accumulationFundPersonRedix,jdbcType=DOUBLE},
+		#{accumulationFundPersonRatio,jdbcType=VARCHAR},
+		#{accumulationFundPersonPay,jdbcType=DOUBLE},
+		#{otherChargesCompany,jdbcType=DOUBLE},
+		#{otherChargesPerson,jdbcType=DOUBLE},
+		#{disabilityBenefit,jdbcType=DOUBLE},
+		#{serviceCharge,jdbcType=DOUBLE},
+		#{companyTotal,jdbcType=DOUBLE}, #{personTotal,jdbcType=DOUBLE}, #{companyRefund,jdbcType=DOUBLE},
+		#{total,jdbcType=DOUBLE}, #{remark,jdbcType=VARCHAR},
+		#{accountingUnit,jdbcType=VARCHAR},
+		#{customerName,jdbcType=VARCHAR}, #{supplierName,jdbcType=VARCHAR})
+	</insert>
+    <insert id="insertSelective" parameterType="com.dianmi.model.SupplierCost">
+        insert into supplier_cost
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="scId != null">
+                sc_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="supplierId != null">
+                supplier_id,
+            </if>
+            <if test="reportingPeriod != null">
+                reporting_period,
+            </if>
+            <if test="employeeName != null">
+                employee_name,
+            </if>
+            <if test="certificateNumber != null">
+                certificate_number,
+            </if>
+            <if test="socialSecurityNumber != null">
+                social_security_number,
+            </if>
+            <if test="accumulationFundNumber != null">
+                accumulation_fund_number,
+            </if>
+            <if test="city != null">
+                city,
+            </if>
+            <if test="residentNature != null">
+                resident_nature,
+            </if>
+            <if test="socialSecurityBeginTime != null">
+                social_security_begin_time,
+            </if>
+            <if test="paymentMonth != null">
+                payment_month,
+            </if>
+            <if test="socialSecurityCardinalRadix != null">
+                social_security_cardinal_radix,
+            </if>
+            <if test="pensionCompanyRadix != null">
+                pension_company_radix,
+            </if>
+            <if test="pensionCompanyPay != null">
+                pension_company_pay,
+            </if>
+            <if test="pensionPersonRadix != null">
+                pension_person_radix,
+            </if>
+            <if test="pensionPersonPay != null">
+                pension_person_pay,
+            </if>
+            <if test="unemploymentCompanyRadix != null">
+                unemployment_company_radix,
+            </if>
+            <if test="unemploymentCompanyPay != null">
+                unemployment_company_pay,
+            </if>
+            <if test="unemploymentPersonRadix != null">
+                unemployment_person_radix,
+            </if>
+            <if test="unemploymentPersonPay != null">
+                unemployment_person_pay,
+            </if>
+            <if test="injuryCompanyRadix != null">
+                injury_company_radix,
+            </if>
+            <if test="injuryCompanyPay != null">
+                injury_company_pay,
+            </if>
+            <if test="procreateCompanyRadix != null">
+                procreate_company_radix,
+            </if>
+            <if test="procreateCompanyPay != null">
+                procreate_company_pay,
+            </if>
+            <if test="medicalTreatmentCompanyRadix != null">
+                medical_treatment_company_radix,
+            </if>
+            <if test="medicalTreatmentCompanyPay != null">
+                medical_treatment_company_pay,
+            </if>
+            <if test="medicalTreatmentPersonRadix != null">
+                medical_treatment_person_radix,
+            </if>
+            <if test="medicalTreatmentPersonPay != null">
+                medical_treatment_person_pay,
+            </if>
+            <if test="seriousIllnessCompanyRedix != null">
+                serious_illness_company_redix,
+            </if>
+            <if test="seriousIllnessCompanyPay != null">
+                serious_illness_company_pay,
+            </if>
+            <if test="seriousIllnessPersonRedix != null">
+                serious_illness_person_redix,
+            </if>
+            <if test="seriousIllnessPersonPay != null">
+                serious_illness_person_pay,
+            </if>
+            <if test="accumulationFundCompanyRedix != null">
+                accumulation_fund_company_redix,
+            </if>
+            <if test="accumulationFundCompanyRatio != null">
+                accumulation_fund_company_ratio,
+            </if>
+            <if test="accumulationFundCompanyPay != null">
+                accumulation_fund_company_pay,
+            </if>
+            <if test="accumulationFundPersonRedix != null">
+                accumulation_fund_person_redix,
+            </if>
+            <if test="accumulationFundPersonRatio != null">
+                accumulation_fund_person_ratio,
+            </if>
+            <if test="accumulationFundPersonPay != null">
+                accumulation_fund_person_pay,
+            </if>
+            <if test="otherChargesCompany != null">
+                other_charges_company,
+            </if>
+            <if test="otherChargesPerson != null">
+                other_charges_person,
+            </if>
+            <if test="disabilityBenefit != null">
+                disability_benefit,
+            </if>
+            <if test="serviceCharge != null">
+                service_charge,
+            </if>
+            <if test="companyTotal != null">
+                company_total,
+            </if>
+            <if test="personTotal != null">
+                person_total,
+            </if>
+            <if test="companyRefund != null">
+                company_refund,
+            </if>
+            <if test="total != null">
+                total,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="accountingUnit != null">
+                accounting_unit,
+            </if>
+            <if test="customerName != null">
+                customer_name,
+            </if>
+            <if test="supplierName != null">
+                supplier_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="scId != null">
+                #{scId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="supplierId != null">
+                #{supplierId,jdbcType=INTEGER},
+            </if>
+            <if test="reportingPeriod != null">
+                #{reportingPeriod,jdbcType=VARCHAR},
+            </if>
+            <if test="employeeName != null">
+                #{employeeName,jdbcType=VARCHAR},
+            </if>
+            <if test="certificateNumber != null">
+                #{certificateNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="socialSecurityNumber != null">
+                #{socialSecurityNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="accumulationFundNumber != null">
+                #{accumulationFundNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="residentNature != null">
+                #{residentNature,jdbcType=VARCHAR},
+            </if>
+            <if test="socialSecurityBeginTime != null">
+                #{socialSecurityBeginTime,jdbcType=VARCHAR},
+            </if>
+            <if test="paymentMonth != null">
+                #{paymentMonth,jdbcType=VARCHAR},
+            </if>
+            <if test="socialSecurityCardinalRadix != null">
+                #{socialSecurityCardinalRadix,jdbcType=DOUBLE},
+            </if>
+            <if test="pensionCompanyRadix != null">
+                #{pensionCompanyRadix,jdbcType=DOUBLE},
+            </if>
+            <if test="pensionCompanyPay != null">
+                #{pensionCompanyPay,jdbcType=DOUBLE},
+            </if>
+            <if test="pensionPersonRadix != null">
+                #{pensionPersonRadix,jdbcType=DOUBLE},
+            </if>
+            <if test="pensionPersonPay != null">
+                #{pensionPersonPay,jdbcType=DOUBLE},
+            </if>
+            <if test="unemploymentCompanyRadix != null">
+                #{unemploymentCompanyRadix,jdbcType=DOUBLE},
+            </if>
+            <if test="unemploymentCompanyPay != null">
+                #{unemploymentCompanyPay,jdbcType=DOUBLE},
+            </if>
+            <if test="unemploymentPersonRadix != null">
+                #{unemploymentPersonRadix,jdbcType=DOUBLE},
+            </if>
+            <if test="unemploymentPersonPay != null">
+                #{unemploymentPersonPay,jdbcType=DOUBLE},
+            </if>
+            <if test="injuryCompanyRadix != null">
+                #{injuryCompanyRadix,jdbcType=DOUBLE},
+            </if>
+            <if test="injuryCompanyPay != null">
+                #{injuryCompanyPay,jdbcType=DOUBLE},
+            </if>
+            <if test="procreateCompanyRadix != null">
+                #{procreateCompanyRadix,jdbcType=DOUBLE},
+            </if>
+            <if test="procreateCompanyPay != null">
+                #{procreateCompanyPay,jdbcType=DOUBLE},
+            </if>
+            <if test="medicalTreatmentCompanyRadix != null">
+                #{medicalTreatmentCompanyRadix,jdbcType=DOUBLE},
+            </if>
+            <if test="medicalTreatmentCompanyPay != null">
+                #{medicalTreatmentCompanyPay,jdbcType=DOUBLE},
+            </if>
+            <if test="medicalTreatmentPersonRadix != null">
+                #{medicalTreatmentPersonRadix,jdbcType=DOUBLE},
+            </if>
+            <if test="medicalTreatmentPersonPay != null">
+                #{medicalTreatmentPersonPay,jdbcType=DOUBLE},
+            </if>
+            <if test="seriousIllnessCompanyRedix != null">
+                #{seriousIllnessCompanyRedix,jdbcType=DOUBLE},
+            </if>
+            <if test="seriousIllnessCompanyPay != null">
+                #{seriousIllnessCompanyPay,jdbcType=DOUBLE},
+            </if>
+            <if test="seriousIllnessPersonRedix != null">
+                #{seriousIllnessPersonRedix,jdbcType=DOUBLE},
+            </if>
+            <if test="seriousIllnessPersonPay != null">
+                #{seriousIllnessPersonPay,jdbcType=DOUBLE},
+            </if>
+            <if test="accumulationFundCompanyRedix != null">
+                #{accumulationFundCompanyRedix,jdbcType=DOUBLE},
+            </if>
+            <if test="accumulationFundCompanyRatio != null">
+                #{accumulationFundCompanyRatio,jdbcType=VARCHAR},
+            </if>
+            <if test="accumulationFundCompanyPay != null">
+                #{accumulationFundCompanyPay,jdbcType=DOUBLE},
+            </if>
+            <if test="accumulationFundPersonRedix != null">
+                #{accumulationFundPersonRedix,jdbcType=DOUBLE},
+            </if>
+            <if test="accumulationFundPersonRatio != null">
+                #{accumulationFundPersonRatio,jdbcType=VARCHAR},
+            </if>
+            <if test="accumulationFundPersonPay != null">
+                #{accumulationFundPersonPay,jdbcType=DOUBLE},
+            </if>
+            <if test="otherChargesCompany != null">
+                #{otherChargesCompany,jdbcType=DOUBLE},
+            </if>
+            <if test="otherChargesPerson != null">
+                #{otherChargesPerson,jdbcType=DOUBLE},
+            </if>
+            <if test="disabilityBenefit != null">
+                #{disabilityBenefit,jdbcType=DOUBLE},
+            </if>
+            <if test="serviceCharge != null">
+                #{serviceCharge,jdbcType=DOUBLE},
+            </if>
+            <if test="companyTotal != null">
+                #{companyTotal,jdbcType=DOUBLE},
+            </if>
+            <if test="personTotal != null">
+                #{personTotal,jdbcType=DOUBLE},
+            </if>
+            <if test="companyRefund != null">
+                #{companyRefund,jdbcType=DOUBLE},
+            </if>
+            <if test="total != null">
+                #{total,jdbcType=DOUBLE},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="accountingUnit != null">
+                #{accountingUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="customerName != null">
+                #{customerName,jdbcType=VARCHAR},
+            </if>
+            <if test="supplierName != null">
+                #{supplierName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.dianmi.model.SupplierCost">
+        update supplier_cost
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="supplierId != null">
+                supplier_id = #{supplierId,jdbcType=INTEGER},
+            </if>
+            <if test="reportingPeriod != null">
+                reporting_period = #{reportingPeriod,jdbcType=VARCHAR},
+            </if>
+            <if test="employeeName != null">
+                employee_name = #{employeeName,jdbcType=VARCHAR},
+            </if>
+            <if test="certificateNumber != null">
+                certificate_number = #{certificateNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="socialSecurityNumber != null">
+                social_security_number = #{socialSecurityNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="accumulationFundNumber != null">
+                accumulation_fund_number = #{accumulationFundNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="residentNature != null">
+                resident_nature = #{residentNature,jdbcType=VARCHAR},
+            </if>
+            <if test="socialSecurityBeginTime != null">
+                social_security_begin_time = #{socialSecurityBeginTime,jdbcType=VARCHAR},
+            </if>
+            <if test="paymentMonth != null">
+                payment_month = #{paymentMonth,jdbcType=VARCHAR},
+            </if>
+            <if test="socialSecurityCardinalRadix != null">
+                social_security_cardinal_radix = #{socialSecurityCardinalRadix,jdbcType=DOUBLE},
+            </if>
+            <if test="pensionCompanyRadix != null">
+                pension_company_radix = #{pensionCompanyRadix,jdbcType=DOUBLE},
+            </if>
+            <if test="pensionCompanyPay != null">
+                pension_company_pay = #{pensionCompanyPay,jdbcType=DOUBLE},
+            </if>
+            <if test="pensionPersonRadix != null">
+                pension_person_radix = #{pensionPersonRadix,jdbcType=DOUBLE},
+            </if>
+            <if test="pensionPersonPay != null">
+                pension_person_pay = #{pensionPersonPay,jdbcType=DOUBLE},
+            </if>
+            <if test="unemploymentCompanyRadix != null">
+                unemployment_company_radix = #{unemploymentCompanyRadix,jdbcType=DOUBLE},
+            </if>
+            <if test="unemploymentCompanyPay != null">
+                unemployment_company_pay = #{unemploymentCompanyPay,jdbcType=DOUBLE},
+            </if>
+            <if test="unemploymentPersonRadix != null">
+                unemployment_person_radix = #{unemploymentPersonRadix,jdbcType=DOUBLE},
+            </if>
+            <if test="unemploymentPersonPay != null">
+                unemployment_person_pay = #{unemploymentPersonPay,jdbcType=DOUBLE},
+            </if>
+            <if test="injuryCompanyRadix != null">
+                injury_company_radix = #{injuryCompanyRadix,jdbcType=DOUBLE},
+            </if>
+            <if test="injuryCompanyPay != null">
+                injury_company_pay = #{injuryCompanyPay,jdbcType=DOUBLE},
+            </if>
+            <if test="procreateCompanyRadix != null">
+                procreate_company_radix = #{procreateCompanyRadix,jdbcType=DOUBLE},
+            </if>
+            <if test="procreateCompanyPay != null">
+                procreate_company_pay = #{procreateCompanyPay,jdbcType=DOUBLE},
+            </if>
+            <if test="medicalTreatmentCompanyRadix != null">
+                medical_treatment_company_radix = #{medicalTreatmentCompanyRadix,jdbcType=DOUBLE},
+            </if>
+            <if test="medicalTreatmentCompanyPay != null">
+                medical_treatment_company_pay = #{medicalTreatmentCompanyPay,jdbcType=DOUBLE},
+            </if>
+            <if test="medicalTreatmentPersonRadix != null">
+                medical_treatment_person_radix = #{medicalTreatmentPersonRadix,jdbcType=DOUBLE},
+            </if>
+            <if test="medicalTreatmentPersonPay != null">
+                medical_treatment_person_pay = #{medicalTreatmentPersonPay,jdbcType=DOUBLE},
+            </if>
+            <if test="seriousIllnessCompanyRedix != null">
+                serious_illness_company_redix = #{seriousIllnessCompanyRedix,jdbcType=DOUBLE},
+            </if>
+            <if test="seriousIllnessCompanyPay != null">
+                serious_illness_company_pay = #{seriousIllnessCompanyPay,jdbcType=DOUBLE},
+            </if>
+            <if test="seriousIllnessPersonRedix != null">
+                serious_illness_person_redix = #{seriousIllnessPersonRedix,jdbcType=DOUBLE},
+            </if>
+            <if test="seriousIllnessPersonPay != null">
+                serious_illness_person_pay = #{seriousIllnessPersonPay,jdbcType=DOUBLE},
+            </if>
+            <if test="accumulationFundCompanyRedix != null">
+                accumulation_fund_company_redix = #{accumulationFundCompanyRedix,jdbcType=DOUBLE},
+            </if>
+            <if test="accumulationFundCompanyRatio != null">
+                accumulation_fund_company_ratio = #{accumulationFundCompanyRatio,jdbcType=VARCHAR},
+            </if>
+            <if test="accumulationFundCompanyPay != null">
+                accumulation_fund_company_pay = #{accumulationFundCompanyPay,jdbcType=DOUBLE},
+            </if>
+            <if test="accumulationFundPersonRedix != null">
+                accumulation_fund_person_redix = #{accumulationFundPersonRedix,jdbcType=DOUBLE},
+            </if>
+            <if test="accumulationFundPersonRatio != null">
+                accumulation_fund_person_ratio = #{accumulationFundPersonRatio,jdbcType=VARCHAR},
+            </if>
+            <if test="accumulationFundPersonPay != null">
+                accumulation_fund_person_pay = #{accumulationFundPersonPay,jdbcType=DOUBLE},
+            </if>
+            <if test="otherChargesCompany != null">
+                other_charges_company = #{otherChargesCompany,jdbcType=DOUBLE},
+            </if>
+            <if test="otherChargesPerson != null">
+                other_charges_person = #{otherChargesPerson,jdbcType=DOUBLE},
+            </if>
+            <if test="disabilityBenefit != null">
+                disability_benefit = #{disabilityBenefit,jdbcType=DOUBLE},
+            </if>
+            <if test="serviceCharge != null">
+                service_charge = #{serviceCharge,jdbcType=DOUBLE},
+            </if>
+            <if test="companyTotal != null">
+                company_total = #{companyTotal,jdbcType=DOUBLE},
+            </if>
+            <if test="personTotal != null">
+                person_total = #{personTotal,jdbcType=DOUBLE},
+            </if>
+            <if test="companyRefund != null">
+                company_refund = #{companyRefund,jdbcType=DOUBLE},
+            </if>
+            <if test="total != null">
+                total = #{total,jdbcType=DOUBLE},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="accountingUnit != null">
+                accounting_unit = #{accountingUnit,jdbcType=VARCHAR},
+            </if>
+            <if test="customerName != null">
+                customer_name = #{customerName,jdbcType=VARCHAR},
+            </if>
+            <if test="supplierName != null">
+                supplier_name = #{supplierName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where sc_id = #{scId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.dianmi.model.SupplierCost">
+		update supplier_cost
+		set user_id = #{userId,jdbcType=INTEGER},
+		supplier_id = #{supplierId,jdbcType=INTEGER},
+		reporting_period = #{reportingPeriod,jdbcType=VARCHAR},
+		employee_name = #{employeeName,jdbcType=VARCHAR},
+		certificate_number = #{certificateNumber,jdbcType=VARCHAR},
+		social_security_number = #{socialSecurityNumber,jdbcType=VARCHAR},
+		accumulation_fund_number = #{accumulationFundNumber,jdbcType=VARCHAR},
+		city = #{city,jdbcType=VARCHAR},
+		resident_nature = #{residentNature,jdbcType=VARCHAR},
+		social_security_begin_time = #{socialSecurityBeginTime,jdbcType=VARCHAR},
+		payment_month = #{paymentMonth,jdbcType=VARCHAR},
+		social_security_cardinal_radix = #{socialSecurityCardinalRadix,jdbcType=DOUBLE},
+		pension_company_radix = #{pensionCompanyRadix,jdbcType=DOUBLE},
+		pension_company_pay = #{pensionCompanyPay,jdbcType=DOUBLE},
+		pension_person_radix = #{pensionPersonRadix,jdbcType=DOUBLE},
+		pension_person_pay = #{pensionPersonPay,jdbcType=DOUBLE},
+		unemployment_company_radix =
+		#{unemploymentCompanyRadix,jdbcType=DOUBLE},
+		unemployment_company_pay = #{unemploymentCompanyPay,jdbcType=DOUBLE},
+		unemployment_person_radix =
+		#{unemploymentPersonRadix,jdbcType=DOUBLE},
+		unemployment_person_pay = #{unemploymentPersonPay,jdbcType=DOUBLE},
+		injury_company_radix = #{injuryCompanyRadix,jdbcType=DOUBLE},
+		injury_company_pay = #{injuryCompanyPay,jdbcType=DOUBLE},
+		procreate_company_radix = #{procreateCompanyRadix,jdbcType=DOUBLE},
+		procreate_company_pay = #{procreateCompanyPay,jdbcType=DOUBLE},
+		medical_treatment_company_radix =
+		#{medicalTreatmentCompanyRadix,jdbcType=DOUBLE},
+		medical_treatment_company_pay =
+		#{medicalTreatmentCompanyPay,jdbcType=DOUBLE},
+		medical_treatment_person_radix =
+		#{medicalTreatmentPersonRadix,jdbcType=DOUBLE},
+		medical_treatment_person_pay =
+		#{medicalTreatmentPersonPay,jdbcType=DOUBLE},
+		serious_illness_company_redix =
+		#{seriousIllnessCompanyRedix,jdbcType=DOUBLE},
+		serious_illness_company_pay =
+		#{seriousIllnessCompanyPay,jdbcType=DOUBLE},
+		serious_illness_person_redix =
+		#{seriousIllnessPersonRedix,jdbcType=DOUBLE},
+		serious_illness_person_pay =
+		#{seriousIllnessPersonPay,jdbcType=DOUBLE},
+		accumulation_fund_company_redix =
+		#{accumulationFundCompanyRedix,jdbcType=DOUBLE},
+		accumulation_fund_company_ratio =
+		#{accumulationFundCompanyRatio,jdbcType=VARCHAR},
+		accumulation_fund_company_pay =
+		#{accumulationFundCompanyPay,jdbcType=DOUBLE},
+		accumulation_fund_person_redix =
+		#{accumulationFundPersonRedix,jdbcType=DOUBLE},
+		accumulation_fund_person_ratio =
+		#{accumulationFundPersonRatio,jdbcType=VARCHAR},
+		accumulation_fund_person_pay =
+		#{accumulationFundPersonPay,jdbcType=DOUBLE},
+		other_charges_company = #{otherChargesCompany,jdbcType=DOUBLE},
+		other_charges_person = #{otherChargesPerson,jdbcType=DOUBLE},
+		disability_benefit = #{disabilityBenefit,jdbcType=DOUBLE},
+		service_charge = #{serviceCharge,jdbcType=DOUBLE},
+		company_total = #{companyTotal,jdbcType=DOUBLE},
+		person_total = #{personTotal,jdbcType=DOUBLE},
+		company_refund = #{companyRefund,jdbcType=DOUBLE},
+		total = #{total,jdbcType=DOUBLE},
+		remark = #{remark,jdbcType=VARCHAR},
+		accounting_unit = #{accountingUnit,jdbcType=VARCHAR},
+		customer_name = #{customerName,jdbcType=VARCHAR},
+		supplier_name = #{supplierName,jdbcType=VARCHAR}
+		where sc_id = #{scId,jdbcType=INTEGER}
+	</update>
+    <select id="selectCity" resultType="java.lang.String">
+		select city from supplier_cost where supplier_id=#{supplierId}
+		and reporting_period=#{reportingPeriod}
+	</select>
+
+    <select id="selectSupplierName" resultType="java.lang.String">
+		select supplier_name from supplier_cost where supplier_id=#{supplierId}
+		and reporting_period=#{reportingPeriod}
+	</select>
+
+    <delete id="deleteSupplierCostDetails">
+		delete from supplier_cost where supplier_id=#{supplierId}
+		and reporting_period=#{reportingPeriod}
+	</delete>
+
+    <select id="customerIdBySupplierCost" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        supplier_cost
+        WHERE
+        reporting_period=#{yearMonth}
+        and supplier_id=#{supplierId}
+        and customer_name in (SELECT c.customer_name from customer c where c.c_id=#{customerId})
+    </select>
+
+    <!-- 按供应商查询某月份费用信息 -->
+    <select id="selectCostBySupplier" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+        supplier_cost
+        WHERE
+        reporting_period = #{yearMonth}
+        AND
+        supplier_id = #{supplierId}
+    </select>
+
+    <!-- 请款账单明细 -->
+    <select id="zhangdanMingxi" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from supplier_cost s
+        where s.supplier_id=#{supplierId}
+        and s.reporting_period=#{yearMonth}
+        <if test="roleType == 2 ">
+            and s.user_id=#{userId}
+        </if>
+        order by s.sc_id desc
+    </select>
+
+
+    <select id="supplierCostPageList" resultType="supplierCost">
+        select
+        s.reporting_period reportingPeriod,
+        s.supplier_id supplierId,
+        s.supplier_name supplierName,
+        s.company_total companyTotal,
+        (s.company_total+s.person_total) shebaoheji,
+        s.disability_benefit disabilityBenefit,
+        s.accumulation_fund_company_pay accumulationFundCompanyPay,
+        s.accumulation_fund_person_pay accumulationFundPersonPay,
+        (s.accumulation_fund_company_pay+s.accumulation_fund_person_pay) gongjijinheji,
+        s.service_charge serviceCharge,
+        s.total
+        from supplier_cost s
+        where 1=1
+        and s.reporting_period=#{yearMonth}
+        <if test="paramName != null">
+            and concat(s.supplier_name,s.customer_name, s.city) like #{paramName}
+        </if>
+        GROUP BY
+        s.supplier_id
+    </select>
+
+
+
+
+    <select id="supplierCostStatistics" resultType="map">
+        -- 供应商账单统计数据
+        select
+        count(s.city) cityNum,
+        count(s.supplier_id) supplierNum,
+        count(s.customer_name) customerNum,
+        sum(s.company_total) companyTotal,
+        sum(s.service_charge) serviceChargeNum,
+        sum(s.accumulation_fund_company_pay + s.accumulation_fund_person_pay) gongjijinTotal
+        from supplier_cost s
+        where 1=1
+        <if test="roleType == 2">
+            and s.user_id=#{userId}
+        </if>
+        and s.reporting_period=#{yearMonth}
+        group by
+        s.city,
+        s.supplier_id,
+        s.customer_name,
+        s.company_total,
+        s.service_charge;
+
+    </select>
+
+</mapper>
