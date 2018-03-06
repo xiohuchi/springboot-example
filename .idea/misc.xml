@@ -7,9 +7,8 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/springboot-helloworld/pom.xml" />
-        <option value="$PROJECT_DIR$/spring-boot-shiro/pom.xml" />
-        <option value="$PROJECT_DIR$/socialSecurity/pom.xml" />
+        <option value="$PROJECT_DIR$/springboo0token/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-token/pom.xml" />
       </list>
     </option>
   </component>

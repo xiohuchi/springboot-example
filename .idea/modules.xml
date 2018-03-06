@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/socialSecurity/socialSecurity.iml" filepath="$PROJECT_DIR$/socialSecurity/socialSecurity.iml" />
-      <module fileurl="file://$PROJECT_DIR$/spring-boot-shiro/spring-boot-shiro.iml" filepath="$PROJECT_DIR$/spring-boot-shiro/spring-boot-shiro.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/springboot-example.iml" filepath="$PROJECT_DIR$/.idea/springboot-example.iml" />
-      <module fileurl="file://$PROJECT_DIR$/springboot-helloworld/springboot-helloworld.iml" filepath="$PROJECT_DIR$/springboot-helloworld/springboot-helloworld.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-token/springboot-token.iml" filepath="$PROJECT_DIR$/springboot-token/springboot-token.iml" />
     </modules>
   </component>
 </project>
